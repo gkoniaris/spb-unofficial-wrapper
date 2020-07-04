@@ -17,13 +17,15 @@ export const getHeaders = function (configuration: Configuration) {
 }
 
 export const getParams = function (configuration: Configuration, url: string) {   
-    return {
+    const params = {
         url,
         api_key: configuration.apiKey,
         block_ads: configuration.block.ads,
         block_resources: configuration.block.resources,
         render_js: configuration.javascript.render,
-        country_code: configuration.settings.countryCode,
+        // country_code: configuration.settings.countryCode,
         forward_headers: configuration.request.headers.length > 0
     }
+
+    return params
 }
