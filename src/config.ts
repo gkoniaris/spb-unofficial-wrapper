@@ -1,15 +1,15 @@
 import Configuration from './@types/Configuration'
 
-export const initConfiguration = function (userConfiguration: Configuration) {
+export const initConfiguration = function (apiKey: string, userConfiguration: Configuration) {
     const defaultConfiguration: Configuration = {
-        apiKey: '',
+        apiKey,
         request: {
             cookies: [],
             headers: [],
         },
         block: {
             ads: true,
-            resources: false
+            resources: true
         },
         settings: {
             premiumProxy: false,
@@ -31,6 +31,10 @@ export const initConfiguration = function (userConfiguration: Configuration) {
     userConfiguration.settings = { ...defaultConfiguration.settings, ...userConfiguration.settings || {} }
     userConfiguration.javascript = { ...defaultConfiguration.javascript, ...userConfiguration.javascript || {} }
     userConfiguration.css = { ...defaultConfiguration.css, ...userConfiguration.css || {} }
+
+    if (userConfiguration.settings.countryCode !== '' && !userConfiguration.settings.premiumProxy) {
+        throw new Error('You cannot set a proxy in a specific country without using a premium proxy')
+    }
 
     const configuration: Configuration = {
         ...defaultConfiguration,
