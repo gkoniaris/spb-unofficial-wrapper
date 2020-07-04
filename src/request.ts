@@ -39,8 +39,11 @@ export default function (this: any, url: string) {
    const headers = builder.getHeaders(this.configuration)
    const params = builder.getParams(this.configuration, url)
 
-   return {
-      execute: () => execute(headers, params),
-      calculateCost: () => calculateCost(this.configuration)
-   }
+   this.execute = () => execute(headers, params)
+   this.calculateCost = () => calculateCost(this.configuration)
+   this.getConfiguration = () => this.configuration
+
+   Object.assign(this, builder.setters)
+
+   return this
 }

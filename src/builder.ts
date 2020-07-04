@@ -23,9 +23,43 @@ export const getParams = function (configuration: Configuration, url: string) {
         block_ads: configuration.block.ads,
         block_resources: configuration.block.resources,
         render_js: configuration.javascript.render,
-        // country_code: configuration.settings.countryCode,
+        country_code: configuration.settings.countryCode,
         forward_headers: configuration.request.headers.length > 0
     }
 
     return params
+}
+
+export const setters = {
+    setAdsBlocking: function(this: any, blockFlag: boolean) {
+        this.configuration.block.ads = blockFlag
+    
+        return this
+    },
+    setResourcesBlocking: function(blockFlag: boolean, configuration: Configuration) {
+        this.configuration.block.resources = blockFlag
+    
+        return this
+    }
+}
+/**
+ * 
+ * @param this 
+ * @param blockFlag 
+ */
+export const setAdsBlocking = function(this: any, blockFlag: boolean) {
+    this.configuration.block.ads = blockFlag
+
+    return this
+}
+
+/**
+ * 
+ * @param this 
+ * @param blockFlag 
+ */
+export const setResourcesBlocking = function(blockFlag: boolean, configuration: Configuration) {
+    this.configuration.block.resources = blockFlag
+
+    return this
 }
