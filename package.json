@@ -11,7 +11,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "axios": "^0.19.2"
+    "axios": "0.19.2"
   },
   "devDependencies": {
     "better-docs": "^2.3.0",
