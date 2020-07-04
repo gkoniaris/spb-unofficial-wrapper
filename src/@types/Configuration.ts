@@ -4,7 +4,7 @@ type ConfigurationType = {
     apiKey: string,
     premium: boolean,
     headers: Array<Header>,
-    cookies: Array<Header>,
+    cookies: Array<Object>,
     blockAds: boolean,
     blockResources: boolean,
     countryCode: string,
