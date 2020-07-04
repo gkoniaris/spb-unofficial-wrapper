@@ -4,9 +4,9 @@ import { initConfiguration } from './config'
 import request from './request'
 
 export default function (userConfiguration: Configuration) {
-    const defaultConfiguration = initConfiguration(userConfiguration)
+    const configuration = initConfiguration(userConfiguration)
 
     return {
-        request: request.bind({defaultConfiguration})
+        request: request.bind({configuration})
     }
 }
