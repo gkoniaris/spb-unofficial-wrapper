@@ -37,6 +37,8 @@ export const init = function (apiKey: string, userConfiguration: Configuration) 
         throw new Error('You cannot set a proxy in a specific country without using a premium proxy')
     }
 
+    if (!userConfiguration.settings.premiumProxy) delete userConfiguration.settings.countryCode
+
     const configuration: Configuration = {
         ...defaultConfiguration,
         ...userConfiguration
