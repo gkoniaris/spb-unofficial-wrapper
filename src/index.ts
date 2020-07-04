@@ -1,5 +1,8 @@
 import Configuration from './@types/Configuration'
 
-export default function(config: Configuration) {
-    console.log(config)
+import { initConfiguration } from './config'
+
+export default function(userConfiguration: Configuration) {
+    const defaultConfiguration = initConfiguration(userConfiguration)
+    
 }
