@@ -1,10 +1,10 @@
 import Configuration from './@types/Configuration'
 
-import { initConfiguration } from './config'
+import { init } from './config'
 import request from './request'
 
 export default function (apiKey: string, userConfiguration: Configuration) {
-    const configuration = initConfiguration(apiKey, userConfiguration)
+    const configuration = init(apiKey, userConfiguration)
 
     return {
         request: request.bind({configuration})

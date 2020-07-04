@@ -12,7 +12,10 @@ import * as builder from './builder'
  * @param headers
  * @param params 
  */
-const execute = function (headers: Array<Header>, params: any) {
+const execute = function (url: string) {
+   const headers: Array<Header> = config.getHeaders(this.configuration)
+   const params: any = config.getParams(this.configuration, url)
+
    axios.get('https://app.scrapingbee.com/api/v1/', {
       headers,
       params
@@ -37,14 +40,12 @@ const calculateCost = function(configuration: Configuration) {
 }
 
 export default function (this: any, url: string) {
-   const headers = config.getHeaders(this.configuration)
-   const params = config.getParams(this.configuration, url)
 
-   this.execute = () => execute(headers, params)
+   this.execute = execute.bind(this)
    this.calculateCost = () => calculateCost(this.configuration)
-   this.getConfiguration = () => this.configuration
 
-   Object.assign(this, builder.setters)
+   Object.assign(this, config)
+   Object.assign(this, builder)
 
    return this
 }

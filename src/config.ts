@@ -1,7 +1,7 @@
 import Configuration from './@types/Configuration'
 import Header from './@types/Header'
 
-export const initConfiguration = function (apiKey: string, userConfiguration: Configuration) {
+export const init = function (apiKey: string, userConfiguration: Configuration) {
     const defaultConfiguration: Configuration = {
         apiKey,
         request: {
