@@ -1,7 +1,15 @@
 import Configuration from './@types/Configuration'
 import Header from './@types/Header'
 
-export const init = function (apiKey: string, userConfiguration: Configuration) {
+/**
+ * test
+ * 
+ * @memberof Config
+ *
+ * @param apiKey 
+ * @param userConfiguration 
+ */
+const init = function (apiKey: string, userConfiguration: Configuration) {
     const defaultConfiguration: Configuration = {
         apiKey,
         request: {
@@ -50,9 +58,11 @@ export const init = function (apiKey: string, userConfiguration: Configuration) 
 /**
  * Returns a list of headers
  * 
+ * @memberof Config
+ *
  * @param configuration
  */
-export const getHeaders = function (configuration: Configuration) {
+const getHeaders = function (configuration: Configuration) {
     const headers: any = {}
 
     configuration.request.headers.forEach((header: Header) => {
@@ -63,11 +73,13 @@ export const getHeaders = function (configuration: Configuration) {
 }
 
 /**
- * 
+ * test 
+ * @memberof Config
+ *
  * @param configuration 
  * @param url 
  */
-export const getParams = function (configuration: Configuration, url: string) {   
+const getParams = function (configuration: Configuration, url: string) {   
     const params = {
         url,
         api_key: configuration.apiKey,
@@ -79,4 +91,14 @@ export const getParams = function (configuration: Configuration, url: string) {
     }
 
     return params
+}
+
+/**
+ * Config namespace
+ * @namespace Config
+ */
+export {
+    init,
+    getHeaders,
+    getParams
 }

@@ -5,7 +5,8 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "build": "tsc"
+    "build": "tsc",
+    "jsdoc": "jsdoc -c ./jsdoc.config.json"
   },
   "author": "",
   "license": "ISC",
@@ -13,6 +14,8 @@
     "axios": "^0.19.2"
   },
   "devDependencies": {
+    "better-docs": "^2.3.0",
+    "jsdoc": "^3.6.4",
     "typescript": "^3.9.6"
   }
 }

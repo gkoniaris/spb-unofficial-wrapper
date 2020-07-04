@@ -9,6 +9,8 @@ import * as builder from './builder'
  * Executes the current request and returns it's data, status code
  * and cost information
  * 
+ * @memberof Request
+ * 
  * @param headers
  * @param params 
  */
@@ -32,6 +34,8 @@ const execute = function (configuration: Configuration, url: string) {
  * Returns the number of credits required to perform the current request 
  * without actually performing it
  * 
+ * @memberof Request
+ *
  * @param configuration
  */
 const calculateCost = function(configuration: Configuration) {
@@ -41,6 +45,10 @@ const calculateCost = function(configuration: Configuration) {
    if (configuration.javascript.render && configuration.settings.premiumProxy) return 100
 }
 
+/**
+ * Request namespace
+ * @namespace Request
+ */
 export default function (this: any, url: string) {
 
    this.execute = () => execute(this.configuration, url)
