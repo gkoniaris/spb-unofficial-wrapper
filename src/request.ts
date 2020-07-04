@@ -2,6 +2,7 @@ import axios from 'axios'
 
 import Configuration from './@types/Configuration';
 import Header from './@types/Header'
+import * as config from './config'
 import * as builder from './builder'
 
 /**
@@ -36,8 +37,8 @@ const calculateCost = function(configuration: Configuration) {
 }
 
 export default function (this: any, url: string) {
-   const headers = builder.getHeaders(this.configuration)
-   const params = builder.getParams(this.configuration, url)
+   const headers = config.getHeaders(this.configuration)
+   const params = config.getParams(this.configuration, url)
 
    this.execute = () => execute(headers, params)
    this.calculateCost = () => calculateCost(this.configuration)
