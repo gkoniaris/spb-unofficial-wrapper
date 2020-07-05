@@ -126,9 +126,10 @@ If you have already passed a default configuration to the scaper, the values wil
 
 The request builder exposes the following functions:
 
-**setAdsBlocking(boolean)**: If true no ads will be loaded
-**setResourcesBlocks(boolean)**: If true, no resources will be loaded
-**setPremiumProxy(bollean)**: If true a premium proxy will be used (usually true for difficult to scrape websites like search engines or social networks)
+setAdsBlocking(boolean): If true no ads will be loaded.
+setResourcesBlocks(boolean): If true, no resources will be loaded.
+setPremiumProxy(boolean): If true a premium proxy will be used (usually true for difficult to scrape websites like search engines or social networks).
+setCountryCode(string): Set the country code of the proxy that will perform the request (only use with premium proxies, else it will throw an error).
 
 
 ## Run tests
