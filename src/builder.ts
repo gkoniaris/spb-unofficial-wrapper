@@ -53,6 +53,7 @@ const setCountryCode = function(this: any, countryCode: string) {
     if (!['br', 'ca', 'fr', 'de', 'gr', 'il', 'it', 'mx', 'nl', 'ru', 'es', 'se', 'us', 'gb'].includes(countryCode)) {
         throw new Error('Country code provided is not supported')
     }
+    
     this.configuration.settings.countryCode = countryCode
 
     return this
