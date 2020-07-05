@@ -1,7 +1,7 @@
 {
   "name": "spb-unofficial-wrapper",
   "version": "1.0.0",
-  "description": "",
+  "description": "An unofficial nodeJS wrapper for the ScrapingBee API",
   "main": "build/index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
