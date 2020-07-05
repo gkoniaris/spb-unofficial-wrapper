@@ -14,7 +14,7 @@ import * as builder from './builder'
  * @param headers
  * @param params 
  */
-const execute = function (configuration: Configuration, url: string) {
+const get = function (configuration: Configuration, url: string) {
    const headers: Array<Header> = config.getHeaders(configuration)
    const params: any = config.getParams(configuration, url)
 
@@ -60,7 +60,7 @@ const calculateCost = function(configuration: Configuration) {
  */
 export default function (this: any, url: string) {
 
-   this.execute = () => execute(this.configuration, url)
+   this.get = () => get(this.configuration, url)
    this.calculateCost = () => calculateCost(this.configuration)
 
    Object.assign(this, config)
