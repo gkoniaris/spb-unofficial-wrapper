@@ -32,7 +32,7 @@ const init = function (apiKey: string, userConfiguration: Configuration) {
         },
         css: {
             waitForSelector: ''
-        },
+        }
     }
 
     userConfiguration.request = { ...defaultConfiguration.request, ...userConfiguration.request || {} }
