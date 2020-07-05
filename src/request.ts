@@ -23,11 +23,17 @@ const execute = function (configuration: Configuration, url: string) {
       params
    }).then(response => {
       return {
-         data: response.data
+         data: response.data,
+         headers: response.headers
       }
-   }).catch(e => [
-      console.log(e)
-   ])
+   }).catch(e => {
+      const response = e.response
+      return Promise.reject({
+         error: response.data.message,
+         status: response.status,
+         headers: response.headers
+      })
+   })
 }
 
 /**
