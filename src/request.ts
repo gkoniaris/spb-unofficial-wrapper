@@ -58,7 +58,8 @@ const calculateCost = function(configuration: Configuration) {
  * Request namespace
  * @namespace Request
  */
-export default function (this: any, url: string) {
+export default function (url: string, configuration: Configuration) {
+   this.configuration = Object.assign({}, configuration)
 
    this.get = () => get(this.configuration, url)
    this.calculateCost = () => calculateCost(this.configuration)

@@ -1,11 +1,11 @@
 import Header from "./@types/Header";
 
 /**
- * Sets the api key that will be used to perform the requests
+ * Sets the api key of the current request instance
  * 
  * @memberof Builder
  *
- * @param apiKey 
+ * @param apiKey {String} The api key that will be used to perform the requests
  */
 const setApiKey = function(apiKey: string) {
     this.configuration.apiKey = apiKey
@@ -14,12 +14,11 @@ const setApiKey = function(apiKey: string) {
 }
 
 /**
- * Sets if ads will be blocked
+ * Sets if ads will be blocked for the current request
  * 
  * @memberof Builder
  *
- * @param this 
- * @param blockFlag 
+ * @param blockFlag {Boolean}
  */
 const setAdsBlocking = function(this: any, blockFlag: boolean) {
     this.configuration.block.ads = blockFlag
@@ -31,9 +30,12 @@ const setAdsBlocking = function(this: any, blockFlag: boolean) {
  * Sets if the resources will be blocked
  * 
  * @memberof Builder
- *
- * @param this 
- * @param blockFlag 
+ * 
+ * @example
+ * // Blocks resources loading
+ * setResourcesBlocking(true)
+ * 
+ * @param blockFlag {Boolean}
  */
 const setResourcesBlocking = function(this: any, blockFlag: boolean) {
     this.configuration.block.resources = blockFlag
@@ -46,14 +48,13 @@ const setResourcesBlocking = function(this: any, blockFlag: boolean) {
  * 
  * @memberof Builder
  *
- * @param this 
  * @param countryCode 
  */
 const setCountryCode = function(this: any, countryCode: string) {
     if (!['br', 'ca', 'fr', 'de', 'gr', 'il', 'it', 'mx', 'nl', 'ru', 'es', 'se', 'us', 'gb'].includes(countryCode)) {
         throw new Error('Country code provided is not supported')
     }
-    
+
     this.configuration.settings.countryCode = countryCode
 
     return this
@@ -64,7 +65,6 @@ const setCountryCode = function(this: any, countryCode: string) {
  * 
  * @memberof Builder
  *
- * @param this 
  * @param premiumFlag 
  */
 const setPremiumProxy = function(this: any, premiumFlag: boolean) {
@@ -78,7 +78,6 @@ const setPremiumProxy = function(this: any, premiumFlag: boolean) {
  * 
  * @memberof Builder
  *
- * @param this 
  * @param cookies 
  */
 const setCookies = function(this: any, cookies: Array<Object>) {
@@ -92,7 +91,6 @@ const setCookies = function(this: any, cookies: Array<Object>) {
  * 
  * @memberof Builder
  *
- * @param this 
  * @param headers 
  */
 const setHeaders = function(this: any, headers: Array<Header>) {
@@ -107,7 +105,6 @@ const setHeaders = function(this: any, headers: Array<Header>) {
  * 
  * @memberof Builder
  *
- * @param this 
  * @param renderFlag 
  */
 const setJavascriptRendering = function(this: any, renderFlag: boolean) {
@@ -122,7 +119,6 @@ const setJavascriptRendering = function(this: any, renderFlag: boolean) {
  * 
  * @memberof Builder
  *
- * @param this 
  * @param snippet 
  */
 const setJavascriptSnippet = function(this: any, snippet: string) {
@@ -140,7 +136,6 @@ const setJavascriptSnippet = function(this: any, snippet: string) {
  *  
  * @memberof Builder
  *
- * @param this 
  * @param wait 
  */
 const setJavascriptWaitForLoad = function(this: any, wait: number) {
@@ -155,7 +150,6 @@ const setJavascriptWaitForLoad = function(this: any, wait: number) {
  *  
  * @memberof Builder
  *
- * @param this 
  * @param selector
  */
 const setJavascriptWaitForSelector = function(this: any, selector: string) {

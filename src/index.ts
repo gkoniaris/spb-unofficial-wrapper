@@ -7,6 +7,6 @@ module.exports = function (apiKey: string, userConfiguration: Configuration) {
     const configuration = init(apiKey, userConfiguration)
 
     return {
-        request: request.bind({configuration})
+        request: (url: string) => request(url, configuration)
     }
 }
