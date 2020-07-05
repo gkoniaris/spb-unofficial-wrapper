@@ -12,7 +12,7 @@
   </a>
 </p>
 
-> An unofficial nodeJS wrapper for the ScrapingBee API
+> An unofficial nodeJS wrapper for the ScrapingBee API.
 
 ## Install
 

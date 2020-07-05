@@ -31,6 +31,7 @@ const get = function (configuration: Configuration, url: string) {
       }
    }).catch(e => {
       const response = e.response
+
       return Promise.reject({
          error: response.data.message,
          status: response.status,
@@ -48,9 +49,13 @@ const get = function (configuration: Configuration, url: string) {
  * @param configuration
  */
 const calculateCost = function(configuration: Configuration) {
+   // No js render and no premium proxy
    if (!configuration.javascript.render && !configuration.settings.premiumProxy) return 1
+   // Js render and no premium proxy
    if (configuration.javascript.render && !configuration.settings.premiumProxy) return 5
+   // No js render and premium proxy
    if (!configuration.javascript.render && configuration.settings.premiumProxy) return 10
+   // Js render and premium proxy
    if (configuration.javascript.render && configuration.settings.premiumProxy) return 100
 }
 
