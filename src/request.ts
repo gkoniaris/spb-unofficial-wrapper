@@ -24,7 +24,10 @@ const execute = function (configuration: Configuration, url: string) {
    }).then(response => {
       return {
          data: response.data,
-         headers: response.headers
+         headers: response.headers,
+         cost: parseInt(response.headers['spb-cost']),
+         statusCode: parseInt(response.headers['spb-initial-status-code']),
+         resolvedUrl: response.headers['spb-resolved-url']
       }
    }).catch(e => {
       const response = e.response
