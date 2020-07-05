@@ -9,7 +9,7 @@
     "docs": "jsdoc -c ./jsdoc.config.json"
   },
   "author": "",
-  "license": "ISC",
+  "license": "MIT",
   "dependencies": {
     "axios": "0.19.2"
   },
