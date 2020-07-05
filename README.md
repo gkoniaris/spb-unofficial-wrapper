@@ -19,7 +19,19 @@
 ## Install
 
 ```sh
-npm install
+npm install scrapingbee-unofficial-wrapper
+```
+
+## Usage
+
+The most simple way to use the module is the following:
+
+```
+const scrapingbee = require('scrapingbee-unofficial-wrapper')
+
+scrapingbee('YOUR-API-KEY')
+
+scrapingbee.get('https://website.com')
 ```
 
 ## Run tests
