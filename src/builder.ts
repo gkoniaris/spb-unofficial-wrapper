@@ -1,7 +1,7 @@
 import Header from "./@types/Header";
 
 /**
- * Sets the api key
+ * Sets the api key that will be used to perform the requests
  * 
  * @memberof Builder
  *

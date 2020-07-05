@@ -2,7 +2,7 @@ import Configuration from './@types/Configuration'
 import Header from './@types/Header'
 
 /**
- * test
+ * Initializes and injects the configuration into the module instance
  * 
  * @memberof Config
  *
@@ -56,7 +56,8 @@ const init = function (apiKey: string, userConfiguration: Configuration) {
 }
 
 /**
- * Returns a list of headers
+ * Returns a list of headers that will be forwarded to the 
+ * ScrapingBee API
  * 
  * @memberof Config
  *
@@ -73,7 +74,9 @@ const getHeaders = function (configuration: Configuration) {
 }
 
 /**
- * test 
+ * Returns a list of params that will be sent to the 
+ * ScrapingBee API through the querystring
+ * 
  * @memberof Config
  *
  * @param configuration 

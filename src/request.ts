@@ -7,7 +7,7 @@ import * as builder from './builder'
 
 /**
  * Executes the current request and returns it's data, status code
- * and cost information
+ * and cost information.
  * 
  * @memberof Request
  * 
@@ -41,7 +41,7 @@ const get = function (configuration: Configuration, url: string) {
 
 /**
  * Returns the number of credits required to perform the current request 
- * without actually performing it
+ * without actually performing it.
  * 
  * @memberof Request
  *
