@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>JSDoc: Source: builder.ts</title>
+
+    <script src="scripts/prettify/prettify.js"> </script>
+    <script src="scripts/prettify/lang-css.js"> </script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+</head>
+
+<body>
+
+<div id="main">
+
+    <h1 class="page-title">Source: builder.ts</h1>
+
+    
+
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>import Header from "./@types/Header";
+
+/**
+ * Sets the api key of the current request instance
+ * 
+ * @memberof Builder
+ *
+ * @param apiKey {String} The api key that will be used to perform the requests
+ */
+const setApiKey = function(apiKey: string) {
+    this.configuration.apiKey = apiKey
+
+    return this
+}
+
+/**
+ * Sets if ads will be blocked for the current request
+ * 
+ * @memberof Builder
+ *
+ * @param blockFlag {Boolean}
+ */
+const setAdsBlocking = function(this: any, blockFlag: boolean) {
+    this.configuration.block.ads = blockFlag
+
+    return this
+}
+
+/**
+ * Sets if the resources will be blocked
+ * 
+ * @memberof Builder
+ * 
+ * @example
+ * // Blocks resources loading
+ * setResourcesBlocking(true)
+ * 
+ * @param blockFlag {Boolean}
+ */
+const setResourcesBlocking = function(this: any, blockFlag: boolean) {
+    this.configuration.block.resources = blockFlag
+
+    return this
+}
+
+/**
+ * Sets the country of the proxy that will perform the request
+ * 
+ * @memberof Builder
+ *
+ * @param countryCode 
+ */
+const setCountryCode = function(this: any, countryCode: string) {
+    if (!['br', 'ca', 'fr', 'de', 'gr', 'il', 'it', 'mx', 'nl', 'ru', 'es', 'se', 'us', 'gb'].includes(countryCode)) {
+        throw new Error('Country code provided is not supported')
+    }
+
+    this.configuration.settings.countryCode = countryCode
+
+    return this
+}
+
+/**
+ * Sets if a premium proxy will be used
+ * 
+ * @memberof Builder
+ *
+ * @param premiumFlag 
+ */
+const setPremiumProxy = function(this: any, premiumFlag: boolean) {
+    this.configuration.settings.premiumProxy = premiumFlag
+
+    return this
+}
+
+/**
+ * Sets the cookies to be forwarded with the request
+ * 
+ * @memberof Builder
+ *
+ * @param cookies 
+ */
+const setCookies = function(this: any, cookies: Array&lt;Object>) {
+    this.configuration.request.cookies = cookies
+
+    return this
+}
+
+/**
+ * Sets the headers to be forwarded with the request
+ * 
+ * @memberof Builder
+ *
+ * @param headers 
+ */
+const setHeaders = function(this: any, headers: Array&lt;Header>) {
+    this.configuration.request.headers = headers
+
+    return this
+}
+
+/**
+ * Sets if the javascript that the requested page contains 
+ * will be rendered or not
+ * 
+ * @memberof Builder
+ *
+ * @param renderFlag 
+ */
+const setJavascriptRendering = function(this: any, renderFlag: boolean) {
+    this.configuration.javascript.render = renderFlag
+
+    return this
+}
+
+/**
+ * Sets a javascript snippet that will be executed after the
+ * requested page has completed loading
+ * 
+ * @memberof Builder
+ *
+ * @param snippet 
+ */
+const setJavascriptSnippet = function(this: any, snippet: string) {
+    this.configuration.javascript.snippet = snippet
+
+    return this
+}
+
+/**
+ * Sets how much time the browser will wait for the page to
+ * load completely before returning the webpage code. Useful 
+ * if the webpage performs async actions and the browser must 
+ * wait for extra time, after the loaded event has been triggered. 
+ * Time is passed in ms.
+ *  
+ * @memberof Builder
+ *
+ * @param wait 
+ */
+const setJavascriptWaitForLoad = function(this: any, wait: number) {
+    this.configuration.javascript.waitForLoad = wait
+
+    return this
+}
+
+/**
+ * Sets a selector which the browser must wait to be visible
+ * before returning the webpage code.
+ *  
+ * @memberof Builder
+ *
+ * @param selector
+ */
+const setJavascriptWaitForSelector = function(this: any, selector: string) {
+    this.configuration.javascript.waitForSelector = selector
+
+    return this
+}
+
+/**
+ * Builder namespace
+ * @namespace Builder
+ */
+export {
+    setApiKey,
+    setAdsBlocking,
+    setResourcesBlocking,
+    setCountryCode,
+    setPremiumProxy,
+    setCookies,
+    setHeaders,
+    setJavascriptRendering,
+    setJavascriptSnippet,
+    setJavascriptWaitForLoad,
+    setJavascriptWaitForSelector
+}</code></pre>
+        </article>
+    </section>
+
+
+
+
+</div>
+
+<nav>
+    <h2><a href="index.html">Home</a></h2><h3>Namespaces</h3><ul><li><a href="Builder.html">Builder</a></li><li><a href="Config.html">Config</a></li><li><a href="Request.html">Request</a></li></ul>
+</nav>
+
+<br class="clear">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 3.6.4</a> on Sun Jul 05 2020 22:06:16 GMT+0300 (Eastern European Summer Time)
+</footer>
+
+<script> prettyPrint(); </script>
+<script src="scripts/linenumber.js"> </script>
+</body>
+</html>
