@@ -131,11 +131,22 @@ setResourcesBlocks(boolean): If true, no resources will be loaded.
 setPremiumProxy(boolean): If true a premium proxy will be used (usually true for difficult to scrape websites like search engines or social networks).
 setCountryCode(string): Set the country code of the proxy that will perform the request (only use with premium proxies, else it will throw an error).
 
+## Build project
+
+```sh
+npm run build
+```
 
 ## Run tests
 
 ```sh
 npm run test
+```
+
+## Build docs
+
+```sh
+npm run docs
 ```
 
 ## Author
