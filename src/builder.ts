@@ -101,6 +101,69 @@ const setHeaders = function(this: any, headers: Array<Header>) {
 }
 
 /**
+ * Sets if the javascript that the requested page contains 
+ * will be rendered or not
+ * 
+ * @memberof Builder
+ *
+ * @param this 
+ * @param renderFlag 
+ */
+const setJavascriptRendering = function(this: any, renderFlag: boolean) {
+    this.configuration.javascript.render = renderFlag
+
+    return this
+}
+
+/**
+ * Sets a javascript snippet that will be executed after the
+ * requested page has completed loading
+ * 
+ * @memberof Builder
+ *
+ * @param this 
+ * @param snippet 
+ */
+const setJavascriptSnippet = function(this: any, snippet: string) {
+    this.configuration.javascript.snippet = snippet
+
+    return this
+}
+
+/**
+ * Sets how much time the browser will wait for the page to
+ * load completely before returning the webpage code. Useful 
+ * if the webpage performs async actions and the browser must 
+ * wait for extra time, after the loaded event has been triggered. 
+ * Time is passed in ms.
+ *  
+ * @memberof Builder
+ *
+ * @param this 
+ * @param wait 
+ */
+const setJavascriptWaitForLoad = function(this: any, wait: number) {
+    this.configuration.javascript.waitForLoad = wait
+
+    return this
+}
+
+/**
+ * Sets a selector which the browser must wait to be visible
+ * before returning the webpage code.
+ *  
+ * @memberof Builder
+ *
+ * @param this 
+ * @param selector
+ */
+const setJavascriptWaitForSelector = function(this: any, selector: string) {
+    this.configuration.javascript.waitForSelector = selector
+
+    return this
+}
+
+/**
  * Builder namespace
  * @namespace Builder
  */
@@ -111,5 +174,9 @@ export {
     setCountryCode,
     setPremiumProxy,
     setCookies,
-    setHeaders
+    setHeaders,
+    setJavascriptRendering,
+    setJavascriptSnippet,
+    setJavascriptWaitForLoad,
+    setJavascriptWaitForSelector
 }
