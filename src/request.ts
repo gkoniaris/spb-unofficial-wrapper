@@ -37,14 +37,14 @@ class Request {
             headers: response.headers,
             cost: parseInt(response.headers['spb-cost']),
             statusCode: parseInt(response.headers['spb-initial-status-code']),
-            resolvedUrl: response.headers['spb-resolved-url']
+            resolvedURL: response.headers['spb-resolved-url']
          }
       }).catch(e => {
          const response = e.response
 
          return Promise.reject({
             error: response.data.message,
-            status: response.status,
+            statusCode: response.status,
             headers: response.headers
          })
       })
