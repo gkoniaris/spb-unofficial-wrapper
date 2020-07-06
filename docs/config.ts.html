@@ -84,7 +84,7 @@
       
     
 
-    <h3>Classes</h3><ul><li id="Builder-nav"><a href="Builder.html">Builder</a><ul class='methods'><li data-type="method" id="Builder-setAdsBlocking-nav"><a href="Builder.html#setAdsBlocking">setAdsBlocking</a></li><li data-type="method" id="Builder-setApiKey-nav"><a href="Builder.html#setApiKey">setApiKey</a></li><li data-type="method" id="Builder-setCookies-nav"><a href="Builder.html#setCookies">setCookies</a></li><li data-type="method" id="Builder-setCountryCode-nav"><a href="Builder.html#setCountryCode">setCountryCode</a></li><li data-type="method" id="Builder-setHeaders-nav"><a href="Builder.html#setHeaders">setHeaders</a></li><li data-type="method" id="Builder-setJavascriptRendering-nav"><a href="Builder.html#setJavascriptRendering">setJavascriptRendering</a></li><li data-type="method" id="Builder-setJavascriptSnippet-nav"><a href="Builder.html#setJavascriptSnippet">setJavascriptSnippet</a></li><li data-type="method" id="Builder-setJavascriptWaitForLoad-nav"><a href="Builder.html#setJavascriptWaitForLoad">setJavascriptWaitForLoad</a></li><li data-type="method" id="Builder-setJavascriptWaitForSelector-nav"><a href="Builder.html#setJavascriptWaitForSelector">setJavascriptWaitForSelector</a></li><li data-type="method" id="Builder-setPremiumProxy-nav"><a href="Builder.html#setPremiumProxy">setPremiumProxy</a></li><li data-type="method" id="Builder-setResourcesBlocking-nav"><a href="Builder.html#setResourcesBlocking">setResourcesBlocking</a></li></ul></li><li id="Request-nav"><a href="Request.html">Request</a><ul class='methods'><li data-type="method" id="Request-calculateCost-nav"><a href="Request.html#calculateCost">calculateCost</a></li><li data-type="method" id="Request-get-nav"><a href="Request.html#get">get</a></li></ul></li></ul>
+    <h3>Classes</h3><ul><li id="Builder-nav"><a href="Builder.html">Builder</a><ul class='methods'><li data-type="method" id="Builder-setAdsBlocking-nav"><a href="Builder.html#setAdsBlocking">setAdsBlocking</a></li><li data-type="method" id="Builder-setApiKey-nav"><a href="Builder.html#setApiKey">setApiKey</a></li><li data-type="method" id="Builder-setCookies-nav"><a href="Builder.html#setCookies">setCookies</a></li><li data-type="method" id="Builder-setCountryCode-nav"><a href="Builder.html#setCountryCode">setCountryCode</a></li><li data-type="method" id="Builder-setHeaders-nav"><a href="Builder.html#setHeaders">setHeaders</a></li><li data-type="method" id="Builder-setJavascriptRendering-nav"><a href="Builder.html#setJavascriptRendering">setJavascriptRendering</a></li><li data-type="method" id="Builder-setJavascriptSnippet-nav"><a href="Builder.html#setJavascriptSnippet">setJavascriptSnippet</a></li><li data-type="method" id="Builder-setJavascriptWaitForLoad-nav"><a href="Builder.html#setJavascriptWaitForLoad">setJavascriptWaitForLoad</a></li><li data-type="method" id="Builder-setJavascriptWaitForSelector-nav"><a href="Builder.html#setJavascriptWaitForSelector">setJavascriptWaitForSelector</a></li><li data-type="method" id="Builder-setPremiumProxy-nav"><a href="Builder.html#setPremiumProxy">setPremiumProxy</a></li><li data-type="method" id="Builder-setResourcesBlocking-nav"><a href="Builder.html#setResourcesBlocking">setResourcesBlocking</a></li></ul></li><li id="Config-nav"><a href="Config.html">Config</a><ul class='methods'><li data-type="method" id="Config-getHeaders-nav"><a href="Config.html#getHeaders">getHeaders</a></li><li data-type="method" id="Config-getParams-nav"><a href="Config.html#getParams">getParams</a></li><li data-type="method" id="Config-init-nav"><a href="Config.html#init">init</a></li></ul></li><li id="Request-nav"><a href="Request.html">Request</a><ul class='methods'><li data-type="method" id="Request-calculateCost-nav"><a href="Request.html#calculateCost">calculateCost</a></li><li data-type="method" id="Request-get-nav"><a href="Request.html#get">get</a></li></ul></li></ul>
   </nav>
 
   <div id="main">
@@ -103,109 +103,107 @@
 import Header from './@types/Header'
 
 /**
- * Initializes and injects the configuration into the module instance
+ * @class Config
  * 
- * @memberof Config
- *
- * @param apiKey 
- * @param userConfiguration 
  */
-const init = function (apiKey: string, userConfiguration: Configuration) {
-    const defaultConfiguration: Configuration = {
-        apiKey,
-        request: {
-            cookies: [],
-            headers: [],
-        },
-        block: {
-            ads: true,
-            resources: true
-        },
-        settings: {
-            premiumProxy: false,
-            countryCode: ''
-        },
-        javascript: {
-            render: true,
-            snippet: '',
-            waitForLoad: 0,
-            responseWithoutRunningJs: false
-        },
-        css: {
-            waitForSelector: ''
+class Config {
+    /**
+     * Initializes and injects the configuration into the module instance
+     * 
+     * @memberof Config
+     *
+     * @param apiKey 
+     * @param userConfiguration 
+     */
+    init (apiKey: string, userConfiguration: Configuration) {
+        const defaultConfiguration: Configuration = {
+            apiKey,
+            request: {
+                cookies: [],
+                headers: [],
+            },
+            block: {
+                ads: true,
+                resources: true
+            },
+            settings: {
+                premiumProxy: false,
+                countryCode: ''
+            },
+            javascript: {
+                render: true,
+                snippet: '',
+                waitForLoad: 0,
+                responseWithoutRunningJs: false
+            },
+            css: {
+                waitForSelector: ''
+            }
         }
-    }
-
-    userConfiguration.request = { ...defaultConfiguration.request, ...userConfiguration.request || {} }
-    userConfiguration.block = { ...defaultConfiguration.block, ...userConfiguration.block || {} }
-    userConfiguration.settings = { ...defaultConfiguration.settings, ...userConfiguration.settings || {} }
-    userConfiguration.javascript = { ...defaultConfiguration.javascript, ...userConfiguration.javascript || {} }
-    userConfiguration.css = { ...defaultConfiguration.css, ...userConfiguration.css || {} }
-
-    if (userConfiguration.settings.countryCode !== '' &amp;&amp; !userConfiguration.settings.premiumProxy) {
-        throw new Error('You cannot set a proxy in a specific country without using a premium proxy')
-    }
-
-    if (!userConfiguration.settings.premiumProxy) delete userConfiguration.settings.countryCode
-
-    const configuration: Configuration = {
-        ...defaultConfiguration,
-        ...userConfiguration
-    }
     
-    return configuration
-}
-
-/**
- * Returns a list of headers that will be forwarded to the 
- * ScrapingBee API
- * 
- * @memberof Config
- *
- * @param configuration
- */
-const getHeaders = function (configuration: Configuration) {
-    const headers: any = {}
-
-    configuration.request.headers.forEach((header: Header) => {
-        headers['Spb-' + header.name] = header.value
-    })
-
-    return headers
-}
-
-/**
- * Returns a list of params that will be sent to the 
- * ScrapingBee API through the querystring
- * 
- * @memberof Config
- *
- * @param configuration 
- * @param url 
- */
-const getParams = function (configuration: Configuration, url: string) {   
-    const params = {
-        url,
-        api_key: configuration.apiKey,
-        block_ads: configuration.block.ads,
-        block_resources: configuration.block.resources,
-        render_js: configuration.javascript.render,
-        country_code: configuration.settings.countryCode,
-        forward_headers: configuration.request.headers.length > 0
+        userConfiguration.request = { ...defaultConfiguration.request, ...userConfiguration.request || {} }
+        userConfiguration.block = { ...defaultConfiguration.block, ...userConfiguration.block || {} }
+        userConfiguration.settings = { ...defaultConfiguration.settings, ...userConfiguration.settings || {} }
+        userConfiguration.javascript = { ...defaultConfiguration.javascript, ...userConfiguration.javascript || {} }
+        userConfiguration.css = { ...defaultConfiguration.css, ...userConfiguration.css || {} }
+    
+        if (userConfiguration.settings.countryCode !== '' &amp;&amp; !userConfiguration.settings.premiumProxy) {
+            throw new Error('You cannot set a proxy in a specific country without using a premium proxy')
+        }
+    
+        if (!userConfiguration.settings.premiumProxy) delete userConfiguration.settings.countryCode
+    
+        const configuration: Configuration = {
+            ...defaultConfiguration,
+            ...userConfiguration
+        }
+        
+        return configuration
     }
 
-    return params
+    /**
+     * Returns a list of headers that will be forwarded to the 
+     * ScrapingBee API
+     * 
+     * @memberof Config
+     *
+     * @param configuration
+     */
+    getHeaders (configuration: Configuration) {
+        const headers: any = {}
+
+        configuration.request.headers.forEach((header: Header) => {
+            headers['Spb-' + header.name] = header.value
+        })
+
+        return headers
+    }
+
+    /**
+     * Returns a list of params that will be sent to the 
+     * ScrapingBee API through the querystring
+     * 
+     * @memberof Config
+     *
+     * @param configuration 
+     * @param url 
+     */
+    getParams (configuration: Configuration, url: string) {   
+        const params = {
+            url,
+            api_key: configuration.apiKey,
+            block_ads: configuration.block.ads,
+            block_resources: configuration.block.resources,
+            render_js: configuration.javascript.render,
+            country_code: configuration.settings.countryCode,
+            forward_headers: configuration.request.headers.length > 0
+        }
+
+        return params
+    }
 }
 
-/**
- * Config namespace
- * @namespace Config
- */
-export {
-    init,
-    getHeaders,
-    getParams
-}</code></pre>
+export default new Config()</code></pre>
   </article>
 </section>
 

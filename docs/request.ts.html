@@ -84,7 +84,7 @@
       
     
 
-    <h3>Classes</h3><ul><li id="Builder-nav"><a href="Builder.html">Builder</a><ul class='methods'><li data-type="method" id="Builder-setAdsBlocking-nav"><a href="Builder.html#setAdsBlocking">setAdsBlocking</a></li><li data-type="method" id="Builder-setApiKey-nav"><a href="Builder.html#setApiKey">setApiKey</a></li><li data-type="method" id="Builder-setCookies-nav"><a href="Builder.html#setCookies">setCookies</a></li><li data-type="method" id="Builder-setCountryCode-nav"><a href="Builder.html#setCountryCode">setCountryCode</a></li><li data-type="method" id="Builder-setHeaders-nav"><a href="Builder.html#setHeaders">setHeaders</a></li><li data-type="method" id="Builder-setJavascriptRendering-nav"><a href="Builder.html#setJavascriptRendering">setJavascriptRendering</a></li><li data-type="method" id="Builder-setJavascriptSnippet-nav"><a href="Builder.html#setJavascriptSnippet">setJavascriptSnippet</a></li><li data-type="method" id="Builder-setJavascriptWaitForLoad-nav"><a href="Builder.html#setJavascriptWaitForLoad">setJavascriptWaitForLoad</a></li><li data-type="method" id="Builder-setJavascriptWaitForSelector-nav"><a href="Builder.html#setJavascriptWaitForSelector">setJavascriptWaitForSelector</a></li><li data-type="method" id="Builder-setPremiumProxy-nav"><a href="Builder.html#setPremiumProxy">setPremiumProxy</a></li><li data-type="method" id="Builder-setResourcesBlocking-nav"><a href="Builder.html#setResourcesBlocking">setResourcesBlocking</a></li></ul></li><li id="Request-nav"><a href="Request.html">Request</a><ul class='methods'><li data-type="method" id="Request-calculateCost-nav"><a href="Request.html#calculateCost">calculateCost</a></li><li data-type="method" id="Request-get-nav"><a href="Request.html#get">get</a></li></ul></li></ul>
+    <h3>Classes</h3><ul><li id="Builder-nav"><a href="Builder.html">Builder</a><ul class='methods'><li data-type="method" id="Builder-setAdsBlocking-nav"><a href="Builder.html#setAdsBlocking">setAdsBlocking</a></li><li data-type="method" id="Builder-setApiKey-nav"><a href="Builder.html#setApiKey">setApiKey</a></li><li data-type="method" id="Builder-setCookies-nav"><a href="Builder.html#setCookies">setCookies</a></li><li data-type="method" id="Builder-setCountryCode-nav"><a href="Builder.html#setCountryCode">setCountryCode</a></li><li data-type="method" id="Builder-setHeaders-nav"><a href="Builder.html#setHeaders">setHeaders</a></li><li data-type="method" id="Builder-setJavascriptRendering-nav"><a href="Builder.html#setJavascriptRendering">setJavascriptRendering</a></li><li data-type="method" id="Builder-setJavascriptSnippet-nav"><a href="Builder.html#setJavascriptSnippet">setJavascriptSnippet</a></li><li data-type="method" id="Builder-setJavascriptWaitForLoad-nav"><a href="Builder.html#setJavascriptWaitForLoad">setJavascriptWaitForLoad</a></li><li data-type="method" id="Builder-setJavascriptWaitForSelector-nav"><a href="Builder.html#setJavascriptWaitForSelector">setJavascriptWaitForSelector</a></li><li data-type="method" id="Builder-setPremiumProxy-nav"><a href="Builder.html#setPremiumProxy">setPremiumProxy</a></li><li data-type="method" id="Builder-setResourcesBlocking-nav"><a href="Builder.html#setResourcesBlocking">setResourcesBlocking</a></li></ul></li><li id="Config-nav"><a href="Config.html">Config</a><ul class='methods'><li data-type="method" id="Config-getHeaders-nav"><a href="Config.html#getHeaders">getHeaders</a></li><li data-type="method" id="Config-getParams-nav"><a href="Config.html#getParams">getParams</a></li><li data-type="method" id="Config-init-nav"><a href="Config.html#init">init</a></li></ul></li><li id="Request-nav"><a href="Request.html">Request</a><ul class='methods'><li data-type="method" id="Request-calculateCost-nav"><a href="Request.html#calculateCost">calculateCost</a></li><li data-type="method" id="Request-get-nav"><a href="Request.html#get">get</a></li></ul></li></ul>
   </nav>
 
   <div id="main">
@@ -103,7 +103,7 @@
 
 import Configuration from './@types/Configuration';
 import Header from './@types/Header'
-import * as config from './config'
+import Config from './config'
 import Builder, * as builder from './builder'
 
 /**
@@ -126,8 +126,8 @@ class Request {
     * and cost information.
     */
    get() {
-      const headers: Array&lt;Header> = config.getHeaders(this.configuration)
-      const params: any = config.getParams(this.configuration, this.url)
+      const headers: Array&lt;Header> = Config.getHeaders(this.configuration)
+      const params: any = Config.getParams(this.configuration, this.url)
 
       return axios.get('https://app.scrapingbee.com/api/v1/', {
          headers,
@@ -168,7 +168,6 @@ class Request {
    }
 }
 
-Request.prototype = Object.assign({}, Request.prototype, config)
 Request.prototype = Object.assign(Request.prototype, Builder.prototype)
 
 export default Request

@@ -2,7 +2,7 @@ import axios from 'axios'
 
 import Configuration from './@types/Configuration';
 import Header from './@types/Header'
-import * as config from './config'
+import Config from './config'
 import Builder, * as builder from './builder'
 
 /**
@@ -25,8 +25,8 @@ class Request {
     * and cost information.
     */
    get() {
-      const headers: Array<Header> = config.getHeaders(this.configuration)
-      const params: any = config.getParams(this.configuration, this.url)
+      const headers: Array<Header> = Config.getHeaders(this.configuration)
+      const params: any = Config.getParams(this.configuration, this.url)
 
       return axios.get('https://app.scrapingbee.com/api/v1/', {
          headers,
@@ -67,7 +67,6 @@ class Request {
    }
 }
 
-Request.prototype = Object.assign({}, Request.prototype, config)
 Request.prototype = Object.assign(Request.prototype, Builder.prototype)
 
 export default Request
