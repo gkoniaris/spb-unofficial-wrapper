@@ -1,12 +1,18 @@
 import Configuration from './@types/Configuration'
 
 import { init } from './config'
-import request from './request'
+import Request from './request'
 
-module.exports = function (apiKey: string, userConfiguration: Configuration = {}) {
-    const configuration = init(apiKey, userConfiguration)
-    
-    return {
-        request: (url: string) => request(url, configuration)
+class Scraper {
+    configuration: Configuration
+
+    constructor (apiKey: string, userConfiguration: Configuration = {}) {
+        this.configuration = init(apiKey, userConfiguration)
+    }
+
+    request(url: string) {
+        return new Request(url, this.configuration)
     }
 }
+
+module.exports = Scraper

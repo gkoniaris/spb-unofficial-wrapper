@@ -3,75 +3,71 @@ import axios from 'axios'
 import Configuration from './@types/Configuration';
 import Header from './@types/Header'
 import * as config from './config'
-import * as builder from './builder'
+import Builder, * as builder from './builder'
 
 /**
- * Returns an instance of the request module
- *
- * @module request
+ * @class Request
  *
  * @param url 
  * @param configuration 
- * 
- * @return this {Object} An instance of the request
  */
-export default function (url: string, configuration: Configuration) {
-   this.configuration = Object.assign({}, configuration)
+class Request {
+   url: string
+   configuration: Configuration
+   
+   constructor(url: string, configuration: Configuration) {
+      this.url = url
+      this.configuration = Object.assign({}, configuration)
+   }
 
-   this.get = () => get(this.configuration, url)
-   this.calculateCost = () => calculateCost(this.configuration)
+   /**
+    * Executes the current request and returns it's data, status code
+    * and cost information.
+    */
+   get() {
+      const headers: Array<Header> = config.getHeaders(this.configuration)
+      const params: any = config.getParams(this.configuration, this.url)
 
-   Object.assign(this, config)
-   Object.assign(this, builder)
+      return axios.get('https://app.scrapingbee.com/api/v1/', {
+         headers,
+         params
+      }).then(response => {
+         return {
+            data: response.data,
+            headers: response.headers,
+            cost: parseInt(response.headers['spb-cost']),
+            statusCode: parseInt(response.headers['spb-initial-status-code']),
+            resolvedUrl: response.headers['spb-resolved-url']
+         }
+      }).catch(e => {
+         const response = e.response
 
-   return this
-}
- /**
- * Executes the current request and returns it's data, status code
- * and cost information.
- *  
- * @param headers
- * @param params 
- */
-const get = function (configuration: Configuration, url: string) {
-   const headers: Array<Header> = config.getHeaders(configuration)
-   const params: any = config.getParams(configuration, url)
-
-   return axios.get('https://app.scrapingbee.com/api/v1/', {
-      headers,
-      params
-   }).then(response => {
-      return {
-         data: response.data,
-         headers: response.headers,
-         cost: parseInt(response.headers['spb-cost']),
-         statusCode: parseInt(response.headers['spb-initial-status-code']),
-         resolvedUrl: response.headers['spb-resolved-url']
-      }
-   }).catch(e => {
-      const response = e.response
-
-      return Promise.reject({
-         error: response.data.message,
-         status: response.status,
-         headers: response.headers
+         return Promise.reject({
+            error: response.data.message,
+            status: response.status,
+            headers: response.headers
+         })
       })
-   })
+   }
+
+   /**
+    * Returns the number of credits required to perform the current request 
+    * without actually performing it.
+    *
+    */
+   calculateCost() {
+      // No js render and no premium proxy
+      if (!this.configuration.javascript.render && !this.configuration.settings.premiumProxy) return 1
+      // Js render and no premium proxy
+      if (this.configuration.javascript.render && !this.configuration.settings.premiumProxy) return 5
+      // No js render and premium proxy
+      if (!this.configuration.javascript.render && this.configuration.settings.premiumProxy) return 10
+      // Js render and premium proxy
+      if (this.configuration.javascript.render && this.configuration.settings.premiumProxy) return 100
+   }
 }
 
-/**
- * Returns the number of credits required to perform the current request 
- * without actually performing it.
- *
- * @param configuration
- */
-const calculateCost = function(configuration: Configuration) {
-   // No js render and no premium proxy
-   if (!configuration.javascript.render && !configuration.settings.premiumProxy) return 1
-   // Js render and no premium proxy
-   if (configuration.javascript.render && !configuration.settings.premiumProxy) return 5
-   // No js render and premium proxy
-   if (!configuration.javascript.render && configuration.settings.premiumProxy) return 10
-   // Js render and premium proxy
-   if (configuration.javascript.render && configuration.settings.premiumProxy) return 100
-}
+Request.prototype = Object.assign({}, Request.prototype, config)
+Request.prototype = Object.assign(Request.prototype, Builder.prototype)
+
+export default Request
