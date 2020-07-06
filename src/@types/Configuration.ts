@@ -12,7 +12,7 @@ type ConfigurationType = {
     },
     settings?: {
         premiumProxy?: false,
-        countryCode?: ''
+        countryCode?: string
     },
     javascript?: {
         render?: boolean,
