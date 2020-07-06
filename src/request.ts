@@ -6,11 +6,30 @@ import * as config from './config'
 import * as builder from './builder'
 
 /**
+ * Returns an instance of the request module
+ *
+ * @module request
+ *
+ * @param url 
+ * @param configuration 
+ * 
+ * @return this {Object} An instance of the request
+ */
+export default function (url: string, configuration: Configuration) {
+   this.configuration = Object.assign({}, configuration)
+
+   this.get = () => get(this.configuration, url)
+   this.calculateCost = () => calculateCost(this.configuration)
+
+   Object.assign(this, config)
+   Object.assign(this, builder)
+
+   return this
+}
+ /**
  * Executes the current request and returns it's data, status code
  * and cost information.
- * 
- * @memberof Request
- * 
+ *  
  * @param headers
  * @param params 
  */
@@ -43,8 +62,6 @@ const get = function (configuration: Configuration, url: string) {
 /**
  * Returns the number of credits required to perform the current request 
  * without actually performing it.
- * 
- * @memberof Request
  *
  * @param configuration
  */
@@ -57,20 +74,4 @@ const calculateCost = function(configuration: Configuration) {
    if (!configuration.javascript.render && configuration.settings.premiumProxy) return 10
    // Js render and premium proxy
    if (configuration.javascript.render && configuration.settings.premiumProxy) return 100
-}
-
-/**
- * Request namespace
- * @namespace Request
- */
-export default function (url: string, configuration: Configuration) {
-   this.configuration = Object.assign({}, configuration)
-
-   this.get = () => get(this.configuration, url)
-   this.calculateCost = () => calculateCost(this.configuration)
-
-   Object.assign(this, config)
-   Object.assign(this, builder)
-
-   return this
 }
