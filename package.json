@@ -6,7 +6,7 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "build": "tsc",
-    "docs": "jsdoc -c ./jsdoc.config.json"
+    "docs": "jsdoc -c ./jsdoc.config.json -R README.md"
   },
   "author": "",
   "license": "MIT",
@@ -16,7 +16,9 @@
   "devDependencies": {
     "@types/node": "^14.0.14",
     "better-docs": "^2.3.0",
+    "braintree-jsdoc-template": "^3.3.0",
     "jsdoc": "^3.6.4",
+    "jsdoc-template": "^1.2.0",
     "typescript": "^3.9.6"
   }
 }

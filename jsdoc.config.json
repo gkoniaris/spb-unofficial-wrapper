@@ -1,6 +1,6 @@
 {
     "opts": {
-        "template": "templates/default",
+        "template": "node_modules/braintree-jsdoc-template",
         "encoding": "utf8",
         "destination": "./docs/",
         "recurse": true
@@ -14,5 +14,18 @@
     "source": {
         "include": ["src"],
         "includePattern": "\\.(jsx|js|ts|tsx)$"
+    },
+    "templates": {
+        "referenceTitle": "Spb Unofficial Wrapper",
+        "disableSort": false,
+        "collapse": true,
+        "resources": {
+            "Github repository": "https://github.com/gkoniaris/spb-unofficial-wrapper/"
+        },
+        "meta": {
+            "title": "Spb Unofficial Wrapper",
+            "description": "Lorem picsum",
+            "keyword": "scrapingbee nodejs module"
+        }
     }
 }
