@@ -123,7 +123,7 @@ scraper.request('https://website.com')
     })
     .catch(err => {
         console.log(err.message)
-        console.log(err.status)
+        console.log(err.statusCode)
     })
 ```
 
