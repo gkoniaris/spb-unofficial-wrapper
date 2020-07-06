@@ -121,25 +121,28 @@
 </code></pre>
 <h2>Usage</h2>
 <p>The most simple way to use the module is the following:</p>
-<pre class="prettyprint source lang-javascript"><code>const scrapingbeeUnofficialWrapper = require('scrapingbee-unofficial-wrapper')
+<pre class="prettyprint source lang-javascript"><code>const Scraper = require('spb-unofficial-wrapper')
 
-const scraper = scrapingbee('YOUR-API-KEY')
+const scraper = new Scraper('YOUR-API-KEY')
 
-const request = scraper.request('https://website.com').get()
-                       .then(response => {
-                           console.log(repsonse.data)
-                           console.log(response.cost)
-                       })
-                       .catch(err => {
-                           console.log(err.message)
-                           console.log(err.status)
-                       })
+scraper.request('https://website.com')
+    .get()
+    .then(response => {
+        console.log(repsonse.data)
+        console.log(response.cost)
+    })
+    .catch(err => {
+        console.log(err.message)
+        console.log(err.status)
+    })
 </code></pre>
 <h2>Configuration</h2>
 <p>You can configure your scraper by setting a default config that will be used in all consequent requests. This can be performed with the following code.</p>
-<pre class="prettyprint source lang-javascript"><code>const configuration = {....} // Please check below for detailed documentation about available settings
+<pre class="prettyprint source lang-javascript"><code>const Scraper = require('spb-unofficial-wrapper')
 
-const scraper = scrapingbee('YOUR-API-KEY', configuration)
+const configuration = {....} // Please check below for detailed documentation about available settings
+
+const scraper = new Scraper('YOUR-API-KEY', configuration)
 </code></pre>
 <p>The configuration contains the following values by default:</p>
 <pre class="prettyprint source lang-json"><code>{
@@ -185,28 +188,50 @@ const scraper = scrapingbee('YOUR-API-KEY', configuration)
 </code></pre>
 <h2>Request Builder</h2>
 <p>You can also use the request request builder to set each property of the request. See the following example showing how the request builder works:</p>
-<pre class="prettyprint source lang-javascript"><code>const scraper = scrapingbee('YOUR-API-KEY')
+<pre class="prettyprint source lang-javascript"><code>const Scraper = require('spb-unofficial-wrapper')
 
-const request = scraper.request('https://website.com')
-                       .setAdsBlocking(true)
-                       .setResourcesBlocks(false)
-                       .setPremiumProxy(true)
-                       .get()
-                       .then(response => {
-                           console.log(repsonse.data)
-                           console.log(response.cost)
-                       })
-                       .catch(err => {
-                           console.log(err.message)
-                           console.log(err.status)
-                       })
+const scraper = new Scraper('YOUR-API-KEY')
+
+scraper.request('https://website.com')
+    .setAdsBlocking(true)
+    .setResourcesBlocks(false)
+    .setPremiumProxy(true)
+    .get()
+    .then(response => {
+        console.log(repsonse.data)
+        console.log(response.cost)
+    })
+    .catch(err => {
+        console.log(err.message)
+        console.log(err.status)
+    })
 </code></pre>
 <p>If you have already passed a default configuration to the scaper, the values will be overrided when using the request builder.</p>
-<p>The request builder exposes the following functions:</p>
-<p>setAdsBlocking(boolean): If true no ads will be loaded.
-setResourcesBlocks(boolean): If true, no resources will be loaded.
-setPremiumProxy(boolean): If true a premium proxy will be used (usually true for difficult to scrape websites like search engines or social networks).
-setCountryCode(string): Set the country code of the proxy that will perform the request (only use with premium proxies, else it will throw an error).</p>
+<p>You can find detailed documentation about the functions of the request builder <a href="https://gkoniaris.github.io/spb-unofficial-wrapper/Builder.html">here</a>, under the Methods section of the Builder class.</p>
+<h2>Request responses</h2>
+<p>After calling the get method of a request, if the request is successfull it will resolve and the response object will contain the following fields:</p>
+<p><strong>data</strong>: The data returned from ScrapingBee</p>
+<p><strong>headers</strong>: The headers returned from the scraper</p>
+<p><strong>cost</strong>: How much the request costed in credits</p>
+<p><strong>statusCode</strong>: The status code that was returned to the scraper (it can be different than the one ScrapingBee returned)</p>
+<p><strong>resolvedURL</strong>: The URL that was scraped (useful in case of redirects)</p>
+<p>In case of a failed request the following fields are retunred in the response object:</p>
+<p><strong>error</strong>: A message explaining what went wrong</p>
+<p><strong>statusCode</strong>: The status returned from the scraper</p>
+<p><strong>headers</strong>: The headers returned from the scraper</p>
+<h2>Cost calculator</h2>
+<p>This module allows to also calculate the cost of a request before even performing it. Keep in mind these rules can change so don't rely that match on this feature. To calculate the cost of a request you can use the following code:</p>
+<pre class="prettyprint source lang-javascript"><code>scraper.request('https://website.com')
+    .setJavascriptRendering(true)
+    .setPremiumProxy(true)
+    .calculateCost() // Returns 100 because we use a premium proxy with javascript rendering
+</code></pre>
+<p>Another example would be:</p>
+<pre class="prettyprint source lang-javascript"><code>scraper.request('https://website.com')
+    .setJavascriptRendering(false)
+    .setPremiumProxy(true)
+    .calculateCost() // Returns 10 because we use a premium proxy without javascript rendering
+</code></pre>
 <h2>Build project</h2>
 <pre class="prettyprint source lang-sh"><code>npm run build
 </code></pre>

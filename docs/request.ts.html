@@ -8,7 +8,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
   <title>
-      request.ts - Documentation
+      Request.ts - Documentation
   </title>
 
   <link href="https://www.braintreepayments.com/images/favicon-ccda0b14.png" rel="icon" type="image/png">
@@ -90,7 +90,7 @@
   <div id="main">
     
       <h1 class="page-title">
-        request.ts
+        Request.ts
       </h1>
     
 
@@ -103,8 +103,8 @@
 
 import Configuration from './@types/Configuration';
 import Header from './@types/Header'
-import Config from './config'
-import Builder, * as builder from './builder'
+import Config from './Config'
+import Builder from './Builder'
 
 /**
  * @class Request
@@ -138,14 +138,14 @@ class Request {
             headers: response.headers,
             cost: parseInt(response.headers['spb-cost']),
             statusCode: parseInt(response.headers['spb-initial-status-code']),
-            resolvedUrl: response.headers['spb-resolved-url']
+            resolvedURL: response.headers['spb-resolved-url']
          }
       }).catch(e => {
          const response = e.response
 
          return Promise.reject({
             error: response.data.message,
-            status: response.status,
+            statusCode: response.status,
             headers: response.headers
          })
       })
