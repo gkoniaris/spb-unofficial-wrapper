@@ -1,7 +1,7 @@
 import Configuration from './@types/Configuration'
 
-import Config from './config'
-import Request from './request'
+import Config from './Config'
+import Request from './Request'
 
 class Scraper {
     configuration: Configuration

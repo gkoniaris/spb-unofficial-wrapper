@@ -2,8 +2,8 @@ import axios from 'axios'
 
 import Configuration from './@types/Configuration';
 import Header from './@types/Header'
-import Config from './config'
-import Builder, * as builder from './builder'
+import Config from './Config'
+import Builder from './Builder'
 
 /**
  * @class Request
