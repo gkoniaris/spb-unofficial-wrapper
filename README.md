@@ -25,19 +25,20 @@ npm install spb-unofficial-wrapper
 The most simple way to use the module is the following:
 
 ```javascript
-const scrapingbeeUnofficialWrapper = require('scrapingbee-unofficial-wrapper')
+const Scraper = require('spb-unofficial-wrapper')
 
-const scraper = scrapingbee('YOUR-API-KEY')
+const scraper = new Scraper('YOUR-API-KEY')
 
-const request = scraper.request('https://website.com').get()
-                       .then(response => {
-                           console.log(repsonse.data)
-                           console.log(response.cost)
-                       })
-                       .catch(err => {
-                           console.log(err.message)
-                           console.log(err.status)
-                       })
+scraper.request('https://website.com')
+    .get()
+    .then(response => {
+        console.log(repsonse.data)
+        console.log(response.cost)
+    })
+    .catch(err => {
+        console.log(err.message)
+        console.log(err.status)
+    })
 ```
 
 ## Configuration
@@ -45,9 +46,11 @@ const request = scraper.request('https://website.com').get()
 You can configure your scraper by setting a default config that will be used in all consequent requests. This can be performed with the following code.
 
 ```javascript
+const Scraper = require('spb-unofficial-wrapper')
+
 const configuration = {....} // Please check below for detailed documentation about available settings
 
-const scraper = scrapingbee('YOUR-API-KEY', configuration)
+const scraper = new Scraper('YOUR-API-KEY', configuration)
 ```
 
 The configuration contains the following values by default:
@@ -105,31 +108,70 @@ Becomes:
 You can also use the request request builder to set each property of the request. See the following example showing how the request builder works:
 
 ```javascript
-const scraper = scrapingbee('YOUR-API-KEY')
+const Scraper = require('spb-unofficial-wrapper')
 
-const request = scraper.request('https://website.com')
-                       .setAdsBlocking(true)
-                       .setResourcesBlocks(false)
-                       .setPremiumProxy(true)
-                       .get()
-                       .then(response => {
-                           console.log(repsonse.data)
-                           console.log(response.cost)
-                       })
-                       .catch(err => {
-                           console.log(err.message)
-                           console.log(err.status)
-                       })
+const scraper = new Scraper('YOUR-API-KEY')
+
+scraper.request('https://website.com')
+    .setAdsBlocking(true)
+    .setResourcesBlocks(false)
+    .setPremiumProxy(true)
+    .get()
+    .then(response => {
+        console.log(repsonse.data)
+        console.log(response.cost)
+    })
+    .catch(err => {
+        console.log(err.message)
+        console.log(err.status)
+    })
 ```
 
 If you have already passed a default configuration to the scaper, the values will be overrided when using the request builder.
 
-The request builder exposes the following functions:
+You can find detailed documentation about the functions of the request builder [here](https://gkoniaris.github.io/spb-unofficial-wrapper/Builder.html), under the Methods section of the Builder class.
 
-setAdsBlocking(boolean): If true no ads will be loaded.
-setResourcesBlocks(boolean): If true, no resources will be loaded.
-setPremiumProxy(boolean): If true a premium proxy will be used (usually true for difficult to scrape websites like search engines or social networks).
-setCountryCode(string): Set the country code of the proxy that will perform the request (only use with premium proxies, else it will throw an error).
+## Request responses
+
+After calling the get method of a request, if the request is successfull it will resolve and the response object will contain the following fields:
+
+**data**: The data returned from ScrapingBee
+
+**headers**: The headers returned from the scraper
+
+**cost**: How much the request costed in credits
+
+**statusCode**: The status code that was returned to the scraper (it can be different than the one ScrapingBee returned)
+
+**resolvedURL**: The URL that was scraped (useful in case of redirects)
+
+In case of a failed request the following fields are retunred in the response object:
+
+**error**: A message explaining what went wrong
+
+**statusCode**: The status returned from the scraper
+
+**headers**: The headers returned from the scraper
+
+## Cost calculator
+
+This module allows to also calculate the cost of a request before even performing it. Keep in mind these rules can change so don't rely that match on this feature. To calculate the cost of a request you can use the following code:
+
+```javascript
+scraper.request('https://website.com')
+    .setJavascriptRendering(true)
+    .setPremiumProxy(true)
+    .calculateCost() // Returns 100 because we use a premium proxy with javascript rendering
+```
+
+Another example would be:
+
+```javascript
+scraper.request('https://website.com')
+    .setJavascriptRendering(false)
+    .setPremiumProxy(true)
+    .calculateCost() // Returns 10 because we use a premium proxy without javascript rendering
+```
 
 ## Build project
 
