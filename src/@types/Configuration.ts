@@ -11,7 +11,7 @@ type ConfigurationType = {
         resources?: boolean
     },
     settings?: {
-        premiumProxy?: false,
+        premiumProxy?: boolean,
         countryCode?: string
     },
     javascript?: {
@@ -21,7 +21,7 @@ type ConfigurationType = {
         responseWithoutRunningJs?: boolean
     },
     css?: {
-        waitForSelector?: ''
+        waitForSelector?: string
     },
 }
 
