@@ -50,7 +50,8 @@ class Request {
          return Promise.reject({
             error: response.data.message,
             statusCode: response.status,
-            headers: response.headers
+            headers: response.headers,
+            cost: parseInt(response.headers['spb-cost'])
          })
       })
    }

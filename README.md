@@ -149,6 +149,8 @@ In case of a failed request the following fields are retunred in the response ob
 
 **error**: A message explaining what went wrong
 
+**cost**: How much the request costed in credits (If the website returns a 404 status the request is charged)
+
 **statusCode**: The status returned from the scraper
 
 **headers**: The headers returned from the scraper
