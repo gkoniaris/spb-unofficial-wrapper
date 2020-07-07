@@ -12,8 +12,8 @@ class Config {
      * 
      * @memberof Config
      *
-     * @param apiKey 
-     * @param userConfiguration 
+     * @param apiKey {String}
+     * @param userConfiguration {Object} 
      */
     init (apiKey: string, userConfiguration: Configuration) {
         const defaultConfiguration: Configuration = {
@@ -67,7 +67,7 @@ class Config {
      * 
      * @memberof Config
      *
-     * @param configuration
+     * @param configuration {Object}
      */
     getHeaders (configuration: Configuration) {
         const headers: any = {}
@@ -85,7 +85,7 @@ class Config {
      * 
      * @memberof Config
      *
-     * @param configuration
+     * @param configuration {Object}
      */
     getCookies (configuration: Configuration) {
         const cookies: string = configuration.request.cookies.map((cookie: Cookie) => {
@@ -101,8 +101,8 @@ class Config {
      * 
      * @memberof Config
      *
-     * @param configuration 
-     * @param url 
+     * @param configuration {Object}
+     * @param url {String}
      */
     getParams (configuration: Configuration, url: string) {
         const cookies = this.getCookies(configuration)

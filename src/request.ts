@@ -15,6 +15,11 @@ class Request {
    url: string
    configuration: Configuration
    
+   /**
+    * 
+    * @param url {String}
+    * @param configuration {Object} 
+    */
    constructor(url: string, configuration: Configuration) {
       this.url = url
       this.configuration = Object.assign({}, configuration)
