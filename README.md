@@ -22,6 +22,8 @@ npm install spb-unofficial-wrapper
 
 ## Usage
 
+To use this module you have to first create an account on [ScrapingBee](https://www.scrapingbee.com/) to get an API key.
+
 The most simple way to use the module is the following:
 
 ```javascript
