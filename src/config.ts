@@ -1,5 +1,6 @@
 import Configuration from './@types/Configuration'
 import Header from './@types/Header'
+import Cookie from './@types/Cookie';
 
 /**
  * @class Config
@@ -79,6 +80,22 @@ class Config {
     }
 
     /**
+     * Returns a list of headers that will be forwarded to the 
+     * ScrapingBee API
+     * 
+     * @memberof Config
+     *
+     * @param configuration
+     */
+    getCookies (configuration: Configuration) {
+        const cookies: string = configuration.request.cookies.map((cookie: Cookie) => {
+            return cookie.name + '=' + cookie.value
+        }).join(';')
+
+        return cookies
+    }
+
+    /**
      * Returns a list of params that will be sent to the 
      * ScrapingBee API through the querystring
      * 
@@ -87,8 +104,10 @@ class Config {
      * @param configuration 
      * @param url 
      */
-    getParams (configuration: Configuration, url: string) {   
-        const params = {
+    getParams (configuration: Configuration, url: string) {
+        const cookies = this.getCookies(configuration)
+
+        const params: any = {
             url,
             api_key: configuration.apiKey,
             block_ads: configuration.block.ads,
@@ -97,6 +116,8 @@ class Config {
             country_code: configuration.settings.countryCode,
             forward_headers: configuration.request.headers.length > 0
         }
+
+        if (cookies !== '') params.cookies = cookies
 
         return params
     }
