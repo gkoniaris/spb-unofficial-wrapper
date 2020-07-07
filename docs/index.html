@@ -191,7 +191,7 @@ const scraper = new Scraper('YOUR-API-KEY', configuration)
 }
 </code></pre>
 <h2>Request Builder</h2>
-<p>You can also use the request request builder to set each property of the request. See the following example showing how the request builder works:</p>
+<p>You can also use the request builder to set each property of the request. See the following example showing how it works:</p>
 <pre class="prettyprint source lang-javascript"><code>const Scraper = require('spb-unofficial-wrapper')
 
 const scraper = new Scraper('YOUR-API-KEY')
@@ -210,8 +210,8 @@ scraper.request('https://website.com')
         console.log(err.statusCode)
     })
 </code></pre>
-<p>If you have already passed a default configuration to the scaper, the values will be overrided when using the request builder.</p>
-<p>You can find detailed documentation about the functions of the request builder <a href="https://gkoniaris.github.io/spb-unofficial-wrapper/Builder.html">here</a>, under the Methods section of the Builder class.</p>
+<p>If you have already passed a default configuration to the scaper, the values will be overrided for the specific request when using the functions of the builder.</p>
+<p>You can find detailed documentation about the builder functions and how to use them <a href="https://gkoniaris.github.io/spb-unofficial-wrapper/Builder.html">here</a>, under the Methods section of the Builder class.</p>
 <h2>Request responses</h2>
 <p>After calling the get method of a request, if the request is successfull it will resolve and the response object will contain the following fields:</p>
 <p><strong>data</strong>: The data returned from ScrapingBee</p>
