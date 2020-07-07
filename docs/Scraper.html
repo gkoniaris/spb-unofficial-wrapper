@@ -1,5 +1,3 @@
-
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -8,7 +6,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
   <title>
-      Builder.ts - Documentation
+      Scraper - Documentation
   </title>
 
   <link href="https://www.braintreepayments.com/images/favicon-ccda0b14.png" rel="icon" type="image/png">
@@ -90,178 +88,372 @@
   <div id="main">
     
       <h1 class="page-title">
-        Builder.ts
+        Scraper
       </h1>
     
 
     
-      
 
 <section>
+  <header>
+    
+      <h2>
+        
+        Scraper
+        
+      </h2>
+
+      
+    
+  </header>
+
   <article>
-    <pre class="prettyprint source linenums"><code>import Header from "./@types/Header"
-import Cookie from "./@types/Cookie"
-import Configuration from "./@types/Configuration"
-/**
- * @class Builder
- * 
- * @param configuration
- */
-class Builder {
-    configuration: Configuration
+    <div class="container-overview">
+      
+        
 
-    /**
-     * 
-     * @param configuration {Object}
-     */
-    constructor(configuration: Configuration) {
-        this.configuration = configuration
-    }
 
-    /**
-     * Sets the api key of the current request instance
-     * 
-     * @param apiKey {String} The api key that will be used to perform the requests
-     */
-    setApiKey(apiKey: string) {
-        this.configuration.apiKey = apiKey
+  
+
+  <span class='name-container'>
+    <a class="link-icon" href="#Scraper">
+      <svg height="20" width="20" style="fill: black;">
+        <use xlink:href="#linkIcon"></use>
+      </svg>
+    </a>
+    <h4 class="name" id="Scraper">
+      <span class="type-signature"></span>new Scraper<span class="signature">(apiKey, userConfiguration)</span><span class="type-signature"></span>
+    </h4>
+  </span>
+
+  
+
+
+
+
+
+
+
+
+
+  <h5>Parameters:</h5>
+  
+
+<table class="params">
+  <thead>
+    <tr>
+      
+        <th>Name</th>
+      
+
+      <th>Type</th>
+
+      
+
+      
+
+      <th class="last">Description</th>
+    </tr>
+  </thead>
+
+  <tbody>
     
-        return this
-    }
+      <tr>
+        
+          <td class="name"><code>apiKey</code></td>
+        
 
-    /**
-     * Sets if ads will be blocked for the current request
-     *
-     * @param blockFlag {Boolean}
-     */
-    setAdsBlocking(blockFlag: boolean) {
-        this.configuration.block.ads = blockFlag
+        <td class="type">
+          
+            
+    <span class="param-type">
+      String
+    </span>
 
-        return this
-    }
     
-    /**
-     * Sets if the resources will be blocked
-     * 
-     * @param blockFlag {Boolean}
-     */
-    setResourcesBlocking(blockFlag: boolean) {
-        this.configuration.block.resources = blockFlag
 
-        return this
-    }
 
-    /**
-     * Sets the country of the proxy that will perform the request
-     *
-     * @param countryCode {String}
-     */
-    setCountryCode(countryCode: string) {
-        if (!['br', 'ca', 'fr', 'de', 'gr', 'il', 'it', 'mx', 'nl', 'ru', 'es', 'se', 'us', 'gb'].includes(countryCode)) {
-            throw new Error('Country code provided is not supported')
-        }
+          
+        </td>
 
-        this.configuration.settings.countryCode = countryCode
+        
 
-        return this
-    }
+        
 
-    /**
-     * Sets if a premium proxy will be used
-     *
-     * @param premiumFlag {Boolean}
-     */
-    setPremiumProxy(premiumFlag: boolean) {
-        this.configuration.settings.premiumProxy = premiumFlag
+        <td class="description last">
+          
+          
+        </td>
+      </tr>
 
-        return this
-    }
+    
+      <tr>
+        
+          <td class="name"><code>userConfiguration</code></td>
+        
 
-    /**
-     * Sets the cookies to be forwarded with the request
-     *
-     * @param cookies {Array}
-     */
-    setCookies(this: any, cookies: Array&lt;Cookie>) {
-        this.configuration.request.cookies = cookies
+        <td class="type">
+          
+            
+    <span class="param-type">
+      Object
+    </span>
 
-        return this
-    }
+    
 
-    /**
-     * Sets the headers to be forwarded with the request
-     *
-     * @param headers {Array}
-     */
-    setHeaders(this: any, headers: Array&lt;Header>) {
-        this.configuration.request.headers = headers
 
-        return this
-    }
+          
+        </td>
 
-    /**
-     * Sets if the javascript that the requested page contains 
-     * will be rendered or not
-     *
-     * @param renderFlag {Boolean}
-     */
-    setJavascriptRendering(this: any, renderFlag: boolean) {
-        this.configuration.javascript.render = renderFlag
+        
 
-        return this
-    }
+        
 
-    /**
-     * Sets a javascript snippet that will be executed after the
-     * requested page has completed loading
-     * 
-     * @param snippet {String}
-     */
-    setJavascriptSnippet(this: any, snippet: string) {
-        const snippetBuffer = new Buffer(snippet);
-        const base64Snippet = snippetBuffer.toString('base64')
+        <td class="description last">
+          
+          
+        </td>
+      </tr>
 
-        this.configuration.javascript.snippet = base64Snippet
+    
+  </tbody>
+</table>
 
-        return this
-    }
 
-    /**
-     * Sets how much time the browser will wait for the page to
-     * load completely before returning the webpage code. Useful 
-     * if the webpage performs async actions and the browser must 
-     * wait for extra time, after the loaded event has been triggered. 
-     * Time is passed in ms.
-     *  
-     * @memberof Builder
-     *
-     * @param wait {Number}
-     */
-    setJavascriptWaitForLoad(this: any, wait: number) {
-        this.configuration.javascript.waitForLoad = wait
 
-        return this
-    }
 
-    /**
-     * Sets a selector which the browser must wait to be visible
-     * before returning the webpage code.
-     *
-     * @param selector {String}
-     */
-    setJavascriptWaitForSelector(this: any, selector: string) {
-        this.configuration.javascript.waitForSelector = selector
 
-        return this
-    }
-}
+<dl class="details">
 
-export default Builder
-</code></pre>
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source">
+      <ul class="dummy">
+        <li>
+          <a href="index.ts.html">index.ts</a>, <a href="index.ts.html#line10">line 10</a>
+        </li>
+      </ul>
+    </dd>
+  
+
+  
+
+  
+
+  
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+      
+    </div>
+
+    
+
+    
+
+    
+
+     
+
+    
+
+    
+
+    
+      <h3 class="subsection-title">Methods</h3>
+
+      
+        
+
+
+  
+
+  <span class='name-container'>
+    <a class="link-icon" href="#request">
+      <svg height="20" width="20" style="fill: black;">
+        <use xlink:href="#linkIcon"></use>
+      </svg>
+    </a>
+    <h4 class="name" id="request">
+      <span class="type-signature"></span>request<span class="signature">(url)</span><span class="type-signature"></span>
+    </h4>
+  </span>
+
+  
+
+
+
+  <div class="description">
+    Returns a request instance that also contains allcommands of the Builder class
+  </div>
+
+
+
+
+
+
+
+  <h5>Parameters:</h5>
+  
+
+<table class="params">
+  <thead>
+    <tr>
+      
+        <th>Name</th>
+      
+
+      <th>Type</th>
+
+      
+
+      
+
+      <th class="last">Description</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    
+      <tr>
+        
+          <td class="name"><code>url</code></td>
+        
+
+        <td class="type">
+          
+            
+    <span class="param-type">
+      String
+    </span>
+
+    
+
+
+          
+        </td>
+
+        
+
+        
+
+        <td class="description last">
+          
+          
+        </td>
+      </tr>
+
+    
+  </tbody>
+</table>
+
+
+
+
+
+<dl class="details">
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source">
+      <ul class="dummy">
+        <li>
+          <a href="index.ts.html">index.ts</a>, <a href="index.ts.html#line19">line 19</a>
+        </li>
+      </ul>
+    </dd>
+  
+
+  
+
+  
+
+  
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+      
+    
+
+    
+
+    
   </article>
 </section>
 
-    
+
 
 
   </div>

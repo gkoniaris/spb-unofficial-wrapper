@@ -82,7 +82,7 @@
       
     
 
-    <h3>Classes</h3><ul><li id="Builder-nav"><a href="Builder.html">Builder</a><ul class='methods'><li data-type="method" id="Builder-setAdsBlocking-nav"><a href="Builder.html#setAdsBlocking">setAdsBlocking</a></li><li data-type="method" id="Builder-setApiKey-nav"><a href="Builder.html#setApiKey">setApiKey</a></li><li data-type="method" id="Builder-setCookies-nav"><a href="Builder.html#setCookies">setCookies</a></li><li data-type="method" id="Builder-setCountryCode-nav"><a href="Builder.html#setCountryCode">setCountryCode</a></li><li data-type="method" id="Builder-setHeaders-nav"><a href="Builder.html#setHeaders">setHeaders</a></li><li data-type="method" id="Builder-setJavascriptRendering-nav"><a href="Builder.html#setJavascriptRendering">setJavascriptRendering</a></li><li data-type="method" id="Builder-setJavascriptSnippet-nav"><a href="Builder.html#setJavascriptSnippet">setJavascriptSnippet</a></li><li data-type="method" id="Builder-setJavascriptWaitForLoad-nav"><a href="Builder.html#setJavascriptWaitForLoad">setJavascriptWaitForLoad</a></li><li data-type="method" id="Builder-setJavascriptWaitForSelector-nav"><a href="Builder.html#setJavascriptWaitForSelector">setJavascriptWaitForSelector</a></li><li data-type="method" id="Builder-setPremiumProxy-nav"><a href="Builder.html#setPremiumProxy">setPremiumProxy</a></li><li data-type="method" id="Builder-setResourcesBlocking-nav"><a href="Builder.html#setResourcesBlocking">setResourcesBlocking</a></li></ul></li><li id="Config-nav"><a href="Config.html">Config</a><ul class='methods'><li data-type="method" id="Config-getHeaders-nav"><a href="Config.html#getHeaders">getHeaders</a></li><li data-type="method" id="Config-getParams-nav"><a href="Config.html#getParams">getParams</a></li><li data-type="method" id="Config-init-nav"><a href="Config.html#init">init</a></li></ul></li><li id="Request-nav"><a href="Request.html">Request</a><ul class='methods'><li data-type="method" id="Request-calculateCost-nav"><a href="Request.html#calculateCost">calculateCost</a></li><li data-type="method" id="Request-get-nav"><a href="Request.html#get">get</a></li></ul></li></ul>
+    <h3>Classes</h3><ul><li id="Builder-nav"><a href="Builder.html">Builder</a><ul class='methods'><li data-type="method" id="Builder-setAdsBlocking-nav"><a href="Builder.html#setAdsBlocking">setAdsBlocking</a></li><li data-type="method" id="Builder-setApiKey-nav"><a href="Builder.html#setApiKey">setApiKey</a></li><li data-type="method" id="Builder-setCookies-nav"><a href="Builder.html#setCookies">setCookies</a></li><li data-type="method" id="Builder-setCountryCode-nav"><a href="Builder.html#setCountryCode">setCountryCode</a></li><li data-type="method" id="Builder-setHeaders-nav"><a href="Builder.html#setHeaders">setHeaders</a></li><li data-type="method" id="Builder-setJavascriptRendering-nav"><a href="Builder.html#setJavascriptRendering">setJavascriptRendering</a></li><li data-type="method" id="Builder-setJavascriptSnippet-nav"><a href="Builder.html#setJavascriptSnippet">setJavascriptSnippet</a></li><li data-type="method" id="Builder-setJavascriptWaitForLoad-nav"><a href="Builder.html#setJavascriptWaitForLoad">setJavascriptWaitForLoad</a></li><li data-type="method" id="Builder-setJavascriptWaitForSelector-nav"><a href="Builder.html#setJavascriptWaitForSelector">setJavascriptWaitForSelector</a></li><li data-type="method" id="Builder-setPremiumProxy-nav"><a href="Builder.html#setPremiumProxy">setPremiumProxy</a></li><li data-type="method" id="Builder-setResourcesBlocking-nav"><a href="Builder.html#setResourcesBlocking">setResourcesBlocking</a></li></ul></li><li id="Config-nav"><a href="Config.html">Config</a><ul class='methods'><li data-type="method" id="Config-getCookies-nav"><a href="Config.html#getCookies">getCookies</a></li><li data-type="method" id="Config-getHeaders-nav"><a href="Config.html#getHeaders">getHeaders</a></li><li data-type="method" id="Config-getParams-nav"><a href="Config.html#getParams">getParams</a></li><li data-type="method" id="Config-init-nav"><a href="Config.html#init">init</a></li></ul></li><li id="Request-nav"><a href="Request.html">Request</a><ul class='methods'><li data-type="method" id="Request-calculateCost-nav"><a href="Request.html#calculateCost">calculateCost</a></li><li data-type="method" id="Request-get-nav"><a href="Request.html#get">get</a></li></ul></li><li id="Scraper-nav"><a href="Scraper.html">Scraper</a><ul class='methods'><li data-type="method" id="Scraper-request-nav"><a href="Scraper.html#request">request</a></li></ul></li></ul>
   </nav>
 
   <div id="main">
@@ -221,6 +221,152 @@
   
 
   <span class='name-container'>
+    <a class="link-icon" href="#getCookies">
+      <svg height="20" width="20" style="fill: black;">
+        <use xlink:href="#linkIcon"></use>
+      </svg>
+    </a>
+    <h4 class="name" id="getCookies">
+      <span class="type-signature"></span>getCookies<span class="signature">(configuration)</span><span class="type-signature"></span>
+    </h4>
+  </span>
+
+  
+
+
+
+  <div class="description">
+    Returns a list of headers that will be forwarded to theScrapingBee API
+  </div>
+
+
+
+
+
+
+
+  <h5>Parameters:</h5>
+  
+
+<table class="params">
+  <thead>
+    <tr>
+      
+        <th>Name</th>
+      
+
+      <th>Type</th>
+
+      
+
+      
+
+      <th class="last">Description</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    
+      <tr>
+        
+          <td class="name"><code>configuration</code></td>
+        
+
+        <td class="type">
+          
+            
+    <span class="param-type">
+      Object
+    </span>
+
+    
+
+
+          
+        </td>
+
+        
+
+        
+
+        <td class="description last">
+          
+          
+        </td>
+      </tr>
+
+    
+  </tbody>
+</table>
+
+
+
+
+
+<dl class="details">
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source">
+      <ul class="dummy">
+        <li>
+          <a href="Config.ts.html">Config.ts</a>, <a href="Config.ts.html#line79">line 79</a>
+        </li>
+      </ul>
+    </dd>
+  
+
+  
+
+  
+
+  
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+      
+        
+
+
+  
+
+  <span class='name-container'>
     <a class="link-icon" href="#getHeaders">
       <svg height="20" width="20" style="fill: black;">
         <use xlink:href="#linkIcon"></use>
@@ -273,6 +419,15 @@
         
 
         <td class="type">
+          
+            
+    <span class="param-type">
+      Object
+    </span>
+
+    
+
+
           
         </td>
 
@@ -411,6 +566,15 @@
 
         <td class="type">
           
+            
+    <span class="param-type">
+      Object
+    </span>
+
+    
+
+
+          
         </td>
 
         
@@ -430,6 +594,15 @@
         
 
         <td class="type">
+          
+            
+    <span class="param-type">
+      String
+    </span>
+
+    
+
+
           
         </td>
 
@@ -482,7 +655,7 @@
     <dd class="tag-source">
       <ul class="dummy">
         <li>
-          <a href="Config.ts.html">Config.ts</a>, <a href="Config.ts.html#line80">line 80</a>
+          <a href="Config.ts.html">Config.ts</a>, <a href="Config.ts.html#line94">line 94</a>
         </li>
       </ul>
     </dd>
@@ -568,6 +741,15 @@
 
         <td class="type">
           
+            
+    <span class="param-type">
+      String
+    </span>
+
+    
+
+
+          
         </td>
 
         
@@ -587,6 +769,15 @@
         
 
         <td class="type">
+          
+            
+    <span class="param-type">
+      Object
+    </span>
+
+    
+
+
           
         </td>
 
