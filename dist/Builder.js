@@ -40,7 +40,9 @@ var Builder = (function () {
         return this;
     };
     Builder.prototype.setJavascriptSnippet = function (snippet) {
-        this.configuration.javascript.snippet = snippet;
+        var snippetBuffer = new Buffer(snippet);
+        var base64Snippet = snippetBuffer.toString('base64');
+        this.configuration.javascript.snippet = base64Snippet;
         return this;
     };
     Builder.prototype.setJavascriptWaitForLoad = function (wait) {
