@@ -1,10 +1,11 @@
 import Header from './Header'
+import Cookie from './Cookie'
 
 type ConfigurationType = {
     apiKey?: string,
     request?: {
         headers?: Array<Header>,
-        cookies?: Array<Object>,
+        cookies?: Array<Cookie>,
     }
     block?: {
         ads?: boolean,
