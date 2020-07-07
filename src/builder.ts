@@ -40,7 +40,7 @@ class Builder {
     }
     
     /**
-     * Sets if the resources will be blocked
+     * Sets if resources will be blocked (images and css)
      * 
      * @param blockFlag {Boolean}
      */
