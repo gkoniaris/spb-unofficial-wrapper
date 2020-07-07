@@ -3,12 +3,20 @@
   "version": "1.0.0",
   "description": "An unofficial nodeJS wrapper for the ScrapingBee API",
   "main": "dist/index.js",
+  "keywords": [
+    "scrapingbee",
+    "scraping",
+    "crawler",
+    "headless-chrome",
+    "proxies"
+  ],
+  "homepage": "https://github.com/gkoniaris/spb-unofficial-wrapper",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "build": "tsc",
     "docs": "jsdoc -c ./jsdoc.config.json -R README.md"
   },
-  "author": "",
+  "author": "George Koniaris <koniaris.giwrgos@gmail.com> (htttps://gkoniaris.gr/)",
   "license": "MIT",
   "dependencies": {
     "axios": "0.19.2"
