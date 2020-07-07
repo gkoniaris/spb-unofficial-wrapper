@@ -9,6 +9,10 @@ import Configuration from "./@types/Configuration"
 class Builder {
     configuration: Configuration
 
+    /**
+     * 
+     * @param configuration {Object}
+     */
     constructor(configuration: Configuration) {
         this.configuration = configuration
     }
@@ -49,7 +53,7 @@ class Builder {
     /**
      * Sets the country of the proxy that will perform the request
      *
-     * @param countryCode 
+     * @param countryCode {String}
      */
     setCountryCode(countryCode: string) {
         if (!['br', 'ca', 'fr', 'de', 'gr', 'il', 'it', 'mx', 'nl', 'ru', 'es', 'se', 'us', 'gb'].includes(countryCode)) {
@@ -64,7 +68,7 @@ class Builder {
     /**
      * Sets if a premium proxy will be used
      *
-     * @param premiumFlag 
+     * @param premiumFlag {Boolean}
      */
     setPremiumProxy(premiumFlag: boolean) {
         this.configuration.settings.premiumProxy = premiumFlag
@@ -75,7 +79,7 @@ class Builder {
     /**
      * Sets the cookies to be forwarded with the request
      *
-     * @param cookies 
+     * @param cookies {Array}
      */
     setCookies(this: any, cookies: Array<Cookie>) {
         this.configuration.request.cookies = cookies
@@ -86,7 +90,7 @@ class Builder {
     /**
      * Sets the headers to be forwarded with the request
      *
-     * @param headers 
+     * @param headers {Array}
      */
     setHeaders(this: any, headers: Array<Header>) {
         this.configuration.request.headers = headers
@@ -98,7 +102,7 @@ class Builder {
      * Sets if the javascript that the requested page contains 
      * will be rendered or not
      *
-     * @param renderFlag 
+     * @param renderFlag {Boolean}
      */
     setJavascriptRendering(this: any, renderFlag: boolean) {
         this.configuration.javascript.render = renderFlag
@@ -110,10 +114,13 @@ class Builder {
      * Sets a javascript snippet that will be executed after the
      * requested page has completed loading
      * 
-     * @param snippet 
+     * @param snippet {String}
      */
     setJavascriptSnippet(this: any, snippet: string) {
-        this.configuration.javascript.snippet = snippet
+        const snippetBuffer = new Buffer(snippet);
+        const base64Snippet = snippetBuffer.toString('base64')
+
+        this.configuration.javascript.snippet = base64Snippet
 
         return this
     }
@@ -127,7 +134,7 @@ class Builder {
      *  
      * @memberof Builder
      *
-     * @param wait 
+     * @param wait {Number}
      */
     setJavascriptWaitForLoad(this: any, wait: number) {
         this.configuration.javascript.waitForLoad = wait
@@ -139,7 +146,7 @@ class Builder {
      * Sets a selector which the browser must wait to be visible
      * before returning the webpage code.
      *
-     * @param selector
+     * @param selector {String}
      */
     setJavascriptWaitForSelector(this: any, selector: string) {
         this.configuration.javascript.waitForSelector = selector
