@@ -79,7 +79,9 @@ class Builder {
     /**
      * Sets the cookies to be forwarded with the request
      *
-     * @param cookies {Array}
+     * @param cookies {Object[]}
+     * @param {String} cookies[].name
+     * @param {String} cookies[].value
      */
     setCookies(this: any, cookies: Array<Cookie>) {
         this.configuration.request.cookies = cookies
@@ -90,7 +92,9 @@ class Builder {
     /**
      * Sets the headers to be forwarded with the request
      *
-     * @param headers {Array}
+     * @param headers {Object[]}
+     * @param {String} headers[].name
+     * @param {String} headers[].value
      */
     setHeaders(this: any, headers: Array<Header>) {
         this.configuration.request.headers = headers
