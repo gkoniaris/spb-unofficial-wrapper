@@ -145,6 +145,8 @@ After calling the get method of a request, if the request is successfull it will
 
 **resolvedURL**: The URL that was scraped (useful in case of redirects)
 
+## Failed Request responses
+
 In case of a failed request the following fields are retunred in the response object:
 
 **error**: A message explaining what went wrong
