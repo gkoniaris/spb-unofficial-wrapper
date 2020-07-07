@@ -1,6 +1,6 @@
-import Header from "./@types/Header";
-import Configuration from "./@types/Configuration";
-
+import Header from "./@types/Header"
+import Cookie from "./@types/Cookie"
+import Configuration from "./@types/Configuration"
 /**
  * @class Builder
  * 
@@ -77,7 +77,7 @@ class Builder {
      *
      * @param cookies 
      */
-    setCookies(this: any, cookies: Array<Object>) {
+    setCookies(this: any, cookies: Array<Cookie>) {
         this.configuration.request.cookies = cookies
 
         return this
