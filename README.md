@@ -14,6 +14,12 @@
 
 > An unofficial nodeJS wrapper for the ScrapingBee API.
 
+## What is spb-unoffical-wrapper
+
+Spb unofficial wrapper, is a nodeJS module, whose sole purpose is to provide a nice and simple way to access ScrapingBee's API while working with NodeJS.
+
+DISLAIMER: This is not an official ScrapingBee product.
+
 ## Install
 
 ```sh
