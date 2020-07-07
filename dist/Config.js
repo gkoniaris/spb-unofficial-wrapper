@@ -59,7 +59,14 @@ var Config = (function () {
         });
         return headers;
     };
+    Config.prototype.getCookies = function (configuration) {
+        var cookies = configuration.request.cookies.map(function (cookie) {
+            return cookie.name + '=' + cookie.value;
+        }).join(';');
+        return cookies;
+    };
     Config.prototype.getParams = function (configuration, url) {
+        var cookies = this.getCookies(configuration);
         var params = {
             url: url,
             api_key: configuration.apiKey,
@@ -69,6 +76,8 @@ var Config = (function () {
             country_code: configuration.settings.countryCode,
             forward_headers: configuration.request.headers.length > 0
         };
+        if (cookies !== '')
+            params.cookies = cookies;
         return params;
     };
     return Config;

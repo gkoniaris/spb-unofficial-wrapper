@@ -41,6 +41,7 @@ var Request = (function () {
         if (this.configuration.javascript.render && this.configuration.settings.premiumProxy)
             return 100;
     };
+    Request.prototype.getCookies = function () { return Config_1["default"].getCookies(this.configuration); };
     return Request;
 }());
 Request.prototype = Object.assign(Request.prototype, Builder_1["default"].prototype);
