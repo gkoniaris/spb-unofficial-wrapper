@@ -4,10 +4,10 @@ import 'mocha'
 import Configuration from '../../src/@types/Configuration'
 import Config from '../../src/Config'
 import Builder from '../../src/Builder'
+import constants from '../../src/constants';
 
 describe('Builder', function() {
     let configuration:Configuration = {}
-    let countryCodes = ['br', 'ca', 'fr', 'de', 'gr', 'il', 'it', 'mx', 'nl', 'ru', 'es', 'se', 'us', 'gb']
     
     before(function() {
         configuration = Config.init('API_KEY', {})
@@ -73,7 +73,7 @@ describe('Builder', function() {
         }, Error)
     })
 
-    countryCodes.forEach(function(countryCode) {
+    constants.countryCodes.forEach(function(countryCode) {
         it('should correctly set country code for countryCode: ' + countryCode + ' when a premium proxy is used', function() {
             const builder = new Builder(Object.assign({}, configuration, { settings: { premiumProxy: true } },))
             

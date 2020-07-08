@@ -1,6 +1,7 @@
 import Header from "./@types/Header"
 import Cookie from "./@types/Cookie"
 import Configuration from "./@types/Configuration"
+import constants from "./constants";
 /**
  * @class Builder
  * 
@@ -62,7 +63,7 @@ class Builder {
             throw new Error('Settting proxy country is only allowed in premium proxies')
         }
 
-        if (!['br', 'ca', 'fr', 'de', 'gr', 'il', 'it', 'mx', 'nl', 'ru', 'es', 'se', 'us', 'gb'].includes(countryCode)) {
+        if (!constants.countryCodes.includes(countryCode)) {
             throw new Error('Country code provided is not supported')
         }
 
