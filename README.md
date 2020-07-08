@@ -35,7 +35,7 @@ The most simple way to use the module is the following:
 ```javascript
 const Scraper = require('spb-unofficial-wrapper')
 
-const scraper = new Scraper('YOUR-API-KEY')
+const scraper = new Scraper('YOUR_API_KEY')
 
 scraper.request('https://website.com')
     .get()
@@ -58,7 +58,7 @@ const Scraper = require('spb-unofficial-wrapper')
 
 const configuration = {....} // Please check below for detailed documentation about available settings
 
-const scraper = new Scraper('YOUR-API-KEY', configuration)
+const scraper = new Scraper('YOUR_API_KEY', configuration)
 ```
 
 The configuration contains the following values by default:
@@ -118,7 +118,7 @@ You can also use the request builder to set each property of the request. See th
 ```javascript
 const Scraper = require('spb-unofficial-wrapper')
 
-const scraper = new Scraper('YOUR-API-KEY')
+const scraper = new Scraper('YOUR_API_KEY')
 
 scraper.request('https://website.com')
     .setAdsBlocking(true)
