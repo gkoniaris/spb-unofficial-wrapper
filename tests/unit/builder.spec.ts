@@ -7,7 +7,8 @@ import Builder from '../../src/Builder'
 
 describe('Builder', function() {
     let configuration:Configuration = {}
-
+    let countryCodes = ['br', 'ca', 'fr', 'de', 'gr', 'il', 'it', 'mx', 'nl', 'ru', 'es', 'se', 'us', 'gb']
+    
     before(function() {
         configuration = Config.init('API_KEY', {})
     })
@@ -27,4 +28,64 @@ describe('Builder', function() {
             builder.setApiKey('')
         }, Error)
     })
-});
+
+    it('should correctly set block ads flag to false', function() {
+        const builder = new Builder(Object.assign({}, configuration))
+        
+        builder.setAdsBlocking(false)
+
+        expect(builder.configuration.block.ads).to.equal(false)
+    })
+
+    it('should correctly set block ads flag to true', function() {
+        const builder = new Builder(Object.assign({}, configuration, { block: { ads: false } }))
+        
+        expect(builder.configuration.block.ads).to.equal(false)
+
+        builder.setAdsBlocking(true)
+
+        expect(builder.configuration.block.ads).to.equal(true)
+    })
+
+    it('should correctly set block resources flag to false', function() {
+        const builder = new Builder(Object.assign({}, configuration))
+        
+        builder.setResourcesBlocking(false)
+
+        expect(builder.configuration.block.resources).to.equal(false)
+    })
+
+    it('should correctly set block resources flag to true', function() {
+        const builder = new Builder(Object.assign({}, configuration, { block: { resources: false } }))
+        
+        expect(builder.configuration.block.resources).to.equal(false)
+
+        builder.setResourcesBlocking(true)
+
+        expect(builder.configuration.block.resources).to.equal(true)
+    })
+
+    it('should not allow country code to be set for non premium proxies', function() {
+        const builder = new Builder(Object.assign({}, configuration))
+        
+        assert.throw(function() {
+            builder.setCountryCode('br')
+        }, Error)
+    })
+
+    countryCodes.forEach(function(countryCode) {
+        it('should correctly set country code for countryCode: ' + countryCode + ' when a premium proxy is used', function() {
+            const builder = new Builder(Object.assign({}, configuration, { settings: { premiumProxy: true } },))
+            
+            builder.setCountryCode('br')
+        })
+    })
+
+    it('should not allow country code to be set for a premium proxy with an invalid country code', function() {
+        const builder = new Builder(Object.assign({}, configuration))
+        
+        assert.throw(function() {
+            builder.setCountryCode('zz')
+        }, Error)
+    })
+})
