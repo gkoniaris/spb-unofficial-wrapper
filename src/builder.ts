@@ -23,6 +23,8 @@ class Builder {
      * @param apiKey {String} The api key that will be used to perform the requests
      */
     setApiKey(apiKey: string) {
+        if (!apiKey) throw new Error('You cannot pass an empty API key')
+        
         this.configuration.apiKey = apiKey
     
         return this
