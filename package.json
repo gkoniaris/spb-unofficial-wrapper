@@ -12,7 +12,7 @@
   ],
   "homepage": "https://github.com/gkoniaris/spb-unofficial-wrapper",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "mocha -r ts-node/register tests/**/*.spec.ts",
     "build": "tsc",
     "docs": "jsdoc -c ./jsdoc.config.json -R README.md"
   },
@@ -22,12 +22,16 @@
     "axios": "0.19.2"
   },
   "devDependencies": {
+    "@types/chai": "^4.2.11",
+    "@types/mocha": "^7.0.2",
     "@types/node": "^14.0.14",
     "better-docs": "^2.3.0",
     "braintree-jsdoc-template": "^3.3.0",
+    "chai": "^4.2.0",
     "jsdoc": "^3.6.4",
     "jsdoc-template": "^1.2.0",
     "mocha": "^8.0.1",
+    "ts-node": "^8.10.2",
     "typescript": "^3.9.6"
   }
 }
