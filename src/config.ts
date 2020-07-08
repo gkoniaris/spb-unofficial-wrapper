@@ -1,6 +1,7 @@
 import Configuration from './@types/Configuration'
 import Header from './@types/Header'
 import Cookie from './@types/Cookie';
+import constants from './constants';
 
 /**
  * @class Config
@@ -16,6 +17,10 @@ class Config {
      * @param userConfiguration {Object} 
      */
     init (apiKey: string, userConfiguration: Configuration) {
+        if (!apiKey) {
+            if (!apiKey) throw new Error('You cannot pass an empty API key')
+        }
+
         const defaultConfiguration: Configuration = {
             apiKey,
             request: {
@@ -48,9 +53,13 @@ class Config {
         userConfiguration.css = { ...defaultConfiguration.css, ...userConfiguration.css || {} }
     
         if (userConfiguration.settings.countryCode !== '' && !userConfiguration.settings.premiumProxy) {
-            throw new Error('You cannot set a proxy in a specific country without using a premium proxy')
+            throw new Error('Settting proxy country is only allowed in premium proxies')
         }
     
+        if (userConfiguration.settings.countryCode !== '' && constants.countryCodes.includes(userConfiguration.settings.countryCode)) {
+            throw new Error('Country code provided is not supported')
+        }
+        
         if (!userConfiguration.settings.premiumProxy) delete userConfiguration.settings.countryCode
     
         const configuration: Configuration = {
