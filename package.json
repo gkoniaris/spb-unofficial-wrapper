@@ -27,6 +27,7 @@
     "braintree-jsdoc-template": "^3.3.0",
     "jsdoc": "^3.6.4",
     "jsdoc-template": "^1.2.0",
+    "mocha": "^8.0.1",
     "typescript": "^3.9.6"
   }
 }
