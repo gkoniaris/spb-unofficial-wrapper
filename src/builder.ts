@@ -24,7 +24,7 @@ class Builder {
      */
     setApiKey(apiKey: string) {
         if (!apiKey) throw new Error('You cannot pass an empty API key')
-        
+
         this.configuration.apiKey = apiKey
     
         return this
@@ -58,6 +58,10 @@ class Builder {
      * @param countryCode {String}
      */
     setCountryCode(countryCode: string) {
+        if (!this.configuration.settings.premiumProxy) {
+            throw new Error('Settting proxy country is only allowed in premium proxies')
+        }
+
         if (!['br', 'ca', 'fr', 'de', 'gr', 'il', 'it', 'mx', 'nl', 'ru', 'es', 'se', 'us', 'gb'].includes(countryCode)) {
             throw new Error('Country code provided is not supported')
         }
