@@ -129,9 +129,14 @@ class Builder {
      * Sets a javascript snippet that will be executed after the
      * requested page has completed loading
      * 
-     * @param snippet {String}
+     * @param snippet {String | null}
      */
-    setJavascriptSnippet(this: any, snippet: string) {
+    setJavascriptSnippet(this: any, snippet: string | null) {
+        if (!snippet) {
+            this.configuration.javascript.snippet = null
+            return this
+        }
+
         const snippetBuffer = Buffer.from(snippet);
         const base64Snippet = snippetBuffer.toString('base64')
 
