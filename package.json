@@ -32,6 +32,7 @@
     "jsdoc-template": "^1.2.0",
     "mocha": "^8.0.1",
     "ts-node": "^8.10.2",
-    "typescript": "^3.9.6"
+    "typescript": "^3.9.6",
+    "lodash.template": ">=4.5.0"
   }
 }
