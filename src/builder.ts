@@ -132,7 +132,7 @@ class Builder {
      * @param snippet {String}
      */
     setJavascriptSnippet(this: any, snippet: string) {
-        const snippetBuffer = new Buffer(snippet);
+        const snippetBuffer = Buffer.from(snippet);
         const base64Snippet = snippetBuffer.toString('base64')
 
         this.configuration.javascript.snippet = base64Snippet
