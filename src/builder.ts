@@ -168,8 +168,8 @@ class Builder {
      *
      * @param selector {String}
      */
-    setJavascriptWaitForSelector(this: any, selector: string) {
-        this.configuration.javascript.waitForSelector = selector
+    setCssWaitForSelector(this: any, selector: string) {
+        this.configuration.css.waitForSelector = selector
 
         return this
     }
