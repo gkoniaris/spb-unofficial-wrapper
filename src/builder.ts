@@ -86,11 +86,13 @@ class Builder {
     /**
      * Sets the cookies to be forwarded with the request
      *
-     * @param cookies {Object[]}
+     * @param cookies {Object[] | null} The cookies that will be forwarded to the request. If null is passed cookies will be reset to an empty array.
      * @param {String} cookies[].name
      * @param {String} cookies[].value
      */
-    setCookies(this: any, cookies: Array<Cookie>) {
+    setCookies(this: any, cookies: Array<Cookie> | null) {
+        if (cookies === null) cookies = []
+
         this.configuration.request.cookies = cookies
 
         return this
@@ -99,11 +101,13 @@ class Builder {
     /**
      * Sets the headers to be forwarded with the request
      *
-     * @param headers {Object[]}
+     * @param cookies {Object[] | null} The headers that will be forwarded to the request. If null is passed headers will be reset to an empty array.
      * @param {String} headers[].name
      * @param {String} headers[].value
      */
-    setHeaders(this: any, headers: Array<Header>) {
+    setHeaders(this: any, headers: Array<Header> | null) {
+        if (headers === null) headers = []
+
         this.configuration.request.headers = headers
 
         return this

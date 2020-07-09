@@ -115,6 +115,23 @@ describe('Builder', function() {
         expect(JSON.stringify(builder.configuration.request.cookies)).to.equal(JSON.stringify([]))
     })
 
+    it('should correctly set zero cookies by passing null', function() {
+        const builder = new Builder(Object.assign({}, configuration, { 
+            request: { 
+                cookies: [
+                    {
+                        'name': 'SESSION_ID',
+                        'value': '12345678'
+                    }
+                ]
+            } 
+        }))
+        
+        builder.setCookies(null)
+
+        expect(JSON.stringify(builder.configuration.request.cookies)).to.equal(JSON.stringify([]))
+    })
+
     it('should correctly set one cookie', function() {
         const builder = new Builder(Object.assign({}, configuration))
         
@@ -164,6 +181,23 @@ describe('Builder', function() {
         const builder = new Builder(Object.assign({}, configuration))
         
         builder.setHeaders([])
+
+        expect(JSON.stringify(builder.configuration.request.headers)).to.equal(JSON.stringify([]))
+    })
+
+    it('should correctly set zero headers by passing null', function() {
+        const builder = new Builder(Object.assign({}, configuration, { 
+            request: { 
+                headers: [
+                    {
+                        'name': 'Authorization',
+                        'value': '12345678'
+                    }
+                ]
+            } 
+        }))
+        
+        builder.setHeaders(null)
 
         expect(JSON.stringify(builder.configuration.request.headers)).to.equal(JSON.stringify([]))
     })

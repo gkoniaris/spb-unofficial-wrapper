@@ -127,7 +127,7 @@
 <p>The most simple way to use the module is the following:</p>
 <pre class="prettyprint source lang-javascript"><code>const Scraper = require('spb-unofficial-wrapper')
 
-const scraper = new Scraper('YOUR-API-KEY')
+const scraper = new Scraper('YOUR_API_KEY')
 
 scraper.request('https://website.com')
     .get()
@@ -146,7 +146,7 @@ scraper.request('https://website.com')
 
 const configuration = {....} // Please check below for detailed documentation about available settings
 
-const scraper = new Scraper('YOUR-API-KEY', configuration)
+const scraper = new Scraper('YOUR_API_KEY', configuration)
 </code></pre>
 <p>The configuration contains the following values by default:</p>
 <pre class="prettyprint source lang-json"><code>{
@@ -194,7 +194,7 @@ const scraper = new Scraper('YOUR-API-KEY', configuration)
 <p>You can also use the request builder to set each property of the request. See the following example showing how it works:</p>
 <pre class="prettyprint source lang-javascript"><code>const Scraper = require('spb-unofficial-wrapper')
 
-const scraper = new Scraper('YOUR-API-KEY')
+const scraper = new Scraper('YOUR_API_KEY')
 
 scraper.request('https://website.com')
     .setAdsBlocking(true)
