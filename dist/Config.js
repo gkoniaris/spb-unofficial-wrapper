@@ -82,7 +82,12 @@ var Config = (function () {
             block_resources: configuration.block.resources,
             render_js: configuration.javascript.render,
             country_code: configuration.settings.countryCode,
-            forward_headers: configuration.request.headers.length > 0
+            forward_headers: configuration.request.headers.length > 0,
+            js_snippet: configuration.javascript.snippet,
+            premium_proxy: configuration.settings.premiumProxy,
+            return_page_source: !configuration.javascript.responseWithoutRunningJs,
+            wait: configuration.javascript.waitForLoad,
+            wait_for: configuration.css.waitForSelector
         };
         if (cookies !== '')
             params.cookies = cookies;

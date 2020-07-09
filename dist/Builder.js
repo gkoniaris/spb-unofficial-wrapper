@@ -50,7 +50,11 @@ var Builder = (function () {
         return this;
     };
     Builder.prototype.setJavascriptSnippet = function (snippet) {
-        var snippetBuffer = new Buffer(snippet);
+        if (!snippet) {
+            this.configuration.javascript.snippet = null;
+            return this;
+        }
+        var snippetBuffer = Buffer.from(snippet);
         var base64Snippet = snippetBuffer.toString('base64');
         this.configuration.javascript.snippet = base64Snippet;
         return this;
@@ -59,8 +63,8 @@ var Builder = (function () {
         this.configuration.javascript.waitForLoad = wait;
         return this;
     };
-    Builder.prototype.setJavascriptWaitForSelector = function (selector) {
-        this.configuration.javascript.waitForSelector = selector;
+    Builder.prototype.setCssWaitForSelector = function (selector) {
+        this.configuration.css.waitForSelector = selector;
         return this;
     };
     return Builder;

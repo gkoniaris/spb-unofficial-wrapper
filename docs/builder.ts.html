@@ -84,7 +84,7 @@
       
     
 
-    <h3>Classes</h3><ul><li id="Builder-nav"><a href="Builder.html">Builder</a><ul class='methods'><li data-type="method" id="Builder-setAdsBlocking-nav"><a href="Builder.html#setAdsBlocking">setAdsBlocking</a></li><li data-type="method" id="Builder-setApiKey-nav"><a href="Builder.html#setApiKey">setApiKey</a></li><li data-type="method" id="Builder-setCookies-nav"><a href="Builder.html#setCookies">setCookies</a></li><li data-type="method" id="Builder-setCountryCode-nav"><a href="Builder.html#setCountryCode">setCountryCode</a></li><li data-type="method" id="Builder-setHeaders-nav"><a href="Builder.html#setHeaders">setHeaders</a></li><li data-type="method" id="Builder-setJavascriptRendering-nav"><a href="Builder.html#setJavascriptRendering">setJavascriptRendering</a></li><li data-type="method" id="Builder-setJavascriptSnippet-nav"><a href="Builder.html#setJavascriptSnippet">setJavascriptSnippet</a></li><li data-type="method" id="Builder-setJavascriptWaitForLoad-nav"><a href="Builder.html#setJavascriptWaitForLoad">setJavascriptWaitForLoad</a></li><li data-type="method" id="Builder-setJavascriptWaitForSelector-nav"><a href="Builder.html#setJavascriptWaitForSelector">setJavascriptWaitForSelector</a></li><li data-type="method" id="Builder-setPremiumProxy-nav"><a href="Builder.html#setPremiumProxy">setPremiumProxy</a></li><li data-type="method" id="Builder-setResourcesBlocking-nav"><a href="Builder.html#setResourcesBlocking">setResourcesBlocking</a></li></ul></li><li id="Config-nav"><a href="Config.html">Config</a><ul class='methods'><li data-type="method" id="Config-getCookies-nav"><a href="Config.html#getCookies">getCookies</a></li><li data-type="method" id="Config-getHeaders-nav"><a href="Config.html#getHeaders">getHeaders</a></li><li data-type="method" id="Config-getParams-nav"><a href="Config.html#getParams">getParams</a></li><li data-type="method" id="Config-init-nav"><a href="Config.html#init">init</a></li></ul></li><li id="Request-nav"><a href="Request.html">Request</a><ul class='methods'><li data-type="method" id="Request-calculateCost-nav"><a href="Request.html#calculateCost">calculateCost</a></li><li data-type="method" id="Request-get-nav"><a href="Request.html#get">get</a></li></ul></li><li id="Scraper-nav"><a href="Scraper.html">Scraper</a><ul class='methods'><li data-type="method" id="Scraper-request-nav"><a href="Scraper.html#request">request</a></li></ul></li></ul>
+    <h3>Classes</h3><ul><li id="Builder-nav"><a href="Builder.html">Builder</a><ul class='methods'><li data-type="method" id="Builder-setAdsBlocking-nav"><a href="Builder.html#setAdsBlocking">setAdsBlocking</a></li><li data-type="method" id="Builder-setApiKey-nav"><a href="Builder.html#setApiKey">setApiKey</a></li><li data-type="method" id="Builder-setCookies-nav"><a href="Builder.html#setCookies">setCookies</a></li><li data-type="method" id="Builder-setCountryCode-nav"><a href="Builder.html#setCountryCode">setCountryCode</a></li><li data-type="method" id="Builder-setCssWaitForSelector-nav"><a href="Builder.html#setCssWaitForSelector">setCssWaitForSelector</a></li><li data-type="method" id="Builder-setHeaders-nav"><a href="Builder.html#setHeaders">setHeaders</a></li><li data-type="method" id="Builder-setJavascriptRendering-nav"><a href="Builder.html#setJavascriptRendering">setJavascriptRendering</a></li><li data-type="method" id="Builder-setJavascriptSnippet-nav"><a href="Builder.html#setJavascriptSnippet">setJavascriptSnippet</a></li><li data-type="method" id="Builder-setJavascriptWaitForLoad-nav"><a href="Builder.html#setJavascriptWaitForLoad">setJavascriptWaitForLoad</a></li><li data-type="method" id="Builder-setPremiumProxy-nav"><a href="Builder.html#setPremiumProxy">setPremiumProxy</a></li><li data-type="method" id="Builder-setResourcesBlocking-nav"><a href="Builder.html#setResourcesBlocking">setResourcesBlocking</a></li></ul></li><li id="Config-nav"><a href="Config.html">Config</a><ul class='methods'><li data-type="method" id="Config-getCookies-nav"><a href="Config.html#getCookies">getCookies</a></li><li data-type="method" id="Config-getHeaders-nav"><a href="Config.html#getHeaders">getHeaders</a></li><li data-type="method" id="Config-getParams-nav"><a href="Config.html#getParams">getParams</a></li><li data-type="method" id="Config-init-nav"><a href="Config.html#init">init</a></li></ul></li><li id="Request-nav"><a href="Request.html">Request</a><ul class='methods'><li data-type="method" id="Request-calculateCost-nav"><a href="Request.html#calculateCost">calculateCost</a></li><li data-type="method" id="Request-get-nav"><a href="Request.html#get">get</a></li></ul></li><li id="Scraper-nav"><a href="Scraper.html">Scraper</a><ul class='methods'><li data-type="method" id="Scraper-request-nav"><a href="Scraper.html#request">request</a></li></ul></li></ul>
   </nav>
 
   <div id="main">
@@ -230,10 +230,15 @@ class Builder {
      * Sets a javascript snippet that will be executed after the
      * requested page has completed loading
      * 
-     * @param snippet {String}
+     * @param snippet {String | null}
      */
-    setJavascriptSnippet(this: any, snippet: string) {
-        const snippetBuffer = new Buffer(snippet);
+    setJavascriptSnippet(this: any, snippet: string | null) {
+        if (!snippet) {
+            this.configuration.javascript.snippet = null
+            return this
+        }
+
+        const snippetBuffer = Buffer.from(snippet);
         const base64Snippet = snippetBuffer.toString('base64')
 
         this.configuration.javascript.snippet = base64Snippet
@@ -264,8 +269,8 @@ class Builder {
      *
      * @param selector {String}
      */
-    setJavascriptWaitForSelector(this: any, selector: string) {
-        this.configuration.javascript.waitForSelector = selector
+    setCssWaitForSelector(this: any, selector: string) {
+        this.configuration.css.waitForSelector = selector
 
         return this
     }
