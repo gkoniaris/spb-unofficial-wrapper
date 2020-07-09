@@ -1,6 +1,6 @@
 {
   "name": "spb-unofficial-wrapper",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "description": "An unofficial nodeJS wrapper for the ScrapingBee API",
   "main": "dist/index.js",
   "keywords": [
