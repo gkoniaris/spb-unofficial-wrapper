@@ -275,4 +275,20 @@ describe('Builder', function() {
 
         expect(builder.configuration.javascript.snippet).to.equal('Y29uc29sZS5sb2coIkkgYW0gYSBqYXZhc2NyaXB0IHNuaXBwZXQi')
     })
+
+    it('should correctly set javascript wait for load flag', function() {
+        const builder = new Builder(Object.assign({}, configuration))
+        
+        builder.setJavascriptWaitForLoad(2000)
+
+        expect(builder.configuration.javascript.waitForLoad).to.equal(2000)
+    })
+
+    it('should correctly set javascript wait for selector value', function() {
+        const builder = new Builder(Object.assign({}, configuration))
+        
+        builder.setCssWaitForSelector('.main-page')
+
+        expect(builder.configuration.css.waitForSelector).to.equal('.main-page')
+    })
 })
