@@ -88,4 +88,127 @@ describe('Builder', function() {
             builder.setCountryCode('zz')
         }, Error)
     })
+
+    it('should correctly set premium proxy flag to true', function() {
+        const builder = new Builder(Object.assign({}, configuration))
+        
+        builder.setPremiumProxy(true)
+
+        expect(builder.configuration.settings.premiumProxy).to.equal(true)
+    })
+
+    it('should correctly set premium proxy flag to false', function() {
+        const builder = new Builder(Object.assign({}, configuration, { settings: { premiumProxy: true } }))
+        
+        expect(builder.configuration.settings.premiumProxy).to.equal(true)
+        
+        builder.setPremiumProxy(false)
+
+        expect(builder.configuration.settings.premiumProxy).to.equal(false)
+    })
+
+    it('should correctly set zero cookies', function() {
+        const builder = new Builder(Object.assign({}, configuration))
+        
+        builder.setCookies([])
+
+        expect(JSON.stringify(builder.configuration.request.cookies)).to.equal(JSON.stringify([]))
+    })
+
+    it('should correctly set one cookie', function() {
+        const builder = new Builder(Object.assign({}, configuration))
+        
+        builder.setCookies([
+            {
+                'name': 'SESSION_ID',
+                'value': '12345678'
+            }
+        ])
+
+        expect(JSON.stringify(builder.configuration.request.cookies)).to.equal(JSON.stringify([
+            {
+                'name': 'SESSION_ID',
+                'value': '12345678'
+            }
+        ]))
+    })
+
+    it('should correctly set more than one cookies', function() {
+        const builder = new Builder(Object.assign({}, configuration))
+        
+        builder.setCookies([
+            {
+                'name': 'SESSION_ID',
+                'value': '12345678'
+            },
+            {
+                'name': 'TRACKING_ID',
+                'value': '87654321'
+            }
+        ])
+
+        expect(JSON.stringify(builder.configuration.request.cookies)).to.equal(JSON.stringify([
+            {
+                'name': 'SESSION_ID',
+                'value': '12345678'
+            },
+            {
+                'name': 'TRACKING_ID',
+                'value': '87654321'
+            }
+        ]))
+    })
+
+    
+    it('should correctly set zero headers', function() {
+        const builder = new Builder(Object.assign({}, configuration))
+        
+        builder.setHeaders([])
+
+        expect(JSON.stringify(builder.configuration.request.headers)).to.equal(JSON.stringify([]))
+    })
+
+    it('should correctly set one header', function() {
+        const builder = new Builder(Object.assign({}, configuration))
+        
+        builder.setHeaders([
+            {
+                'name': 'Authorization',
+                'value': '12345678'
+            }
+        ])
+
+        expect(JSON.stringify(builder.configuration.request.headers)).to.equal(JSON.stringify([
+            {
+                'name': 'Authorization',
+                'value': '12345678'
+            }
+        ]))
+    })
+
+    it('should correctly set more than one headers', function() {
+        const builder = new Builder(Object.assign({}, configuration))
+        
+        builder.setHeaders([
+            {
+                'name': 'Authorization',
+                'value': '12345678'
+            },
+            {
+                'name': 'Content-type',
+                'value': 'application/json'
+            }
+        ])
+
+        expect(JSON.stringify(builder.configuration.request.headers)).to.equal(JSON.stringify([
+            {
+                'name': 'Authorization',
+                'value': '12345678'
+            },
+            {
+                'name': 'Content-type',
+                'value': 'application/json'
+            }
+        ]))
+    })
 })
