@@ -245,4 +245,34 @@ describe('Builder', function() {
             }
         ]))
     })
+
+    it('should correctly set javascript rendering flag to false', function() {
+        const builder = new Builder(Object.assign({}, configuration))
+        
+        builder.setJavascriptRendering(false)
+
+        expect(builder.configuration.javascript.render).to.equal(false)
+    })
+
+    it('should correctly set javascript rendering flag to true', function() {
+        const builder = new Builder(Object.assign({}, configuration, {
+            javascript: {
+                render: false
+            }
+        }))
+
+        expect(builder.configuration.javascript.render).to.equal(false)
+
+        builder.setJavascriptRendering(true)
+
+        expect(builder.configuration.javascript.render).to.equal(true)
+    })
+
+    it('should correctly set javascript snippet and encode it to base64', function() {
+        const builder = new Builder(Object.assign({}, configuration))
+        
+        builder.setJavascriptSnippet('console.log("I am a javascript snippet"')
+
+        expect(builder.configuration.javascript.snippet).to.equal('Y29uc29sZS5sb2coIkkgYW0gYSBqYXZhc2NyaXB0IHNuaXBwZXQi')
+    })
 })
