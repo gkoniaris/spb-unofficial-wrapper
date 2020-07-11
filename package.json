@@ -18,9 +18,7 @@
   },
   "author": "George Koniaris <koniaris.giwrgos@gmail.com> (htttps://gkoniaris.gr/)",
   "license": "MIT",
-  "dependencies": {
-    "axios": "0.19.2"
-  },
+  "dependencies": {},
   "devDependencies": {
     "@types/chai": "^4.2.11",
     "@types/mocha": "^7.0.2",

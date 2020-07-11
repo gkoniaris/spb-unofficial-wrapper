@@ -1,7 +1,6 @@
-import axios from 'axios'
+import * as https from 'https'
 
 import Configuration from './@types/Configuration';
-import Header from './@types/Header'
 import Config from './Config'
 import Builder from './Builder'
 
@@ -25,35 +24,72 @@ class Request {
       this.configuration = Object.assign({}, configuration)
    }
 
+   _performRequest(type: string) {
+      const headers: any = Config.getHeaders(this.configuration)
+      const params: any = Config.getParams(this.configuration, this.url)
+
+      let queryString = ''
+
+      Object.keys(params).forEach((key, idx) => {
+         if (params[key] && params[key] !== '') {
+            if (idx !== 0) queryString += '&'
+            queryString += key + '=' + params[key]
+         }
+      })
+
+      const options:https.RequestOptions = {
+         host: 'app.scrapingbee.com',
+         port: '443',
+         path: '/api/v1?' + queryString,
+         method: 'GET',
+         headers
+      }
+
+      return new Promise((resolve, reject) => {
+         //@ts-ignore
+         https[type](options, function(response: any){
+            let data = ''
+
+            response.on('data', (chunk: any) => {
+               data += chunk
+            })
+
+            response.on('end', () => {
+               if (response.statusCode < 200 || response.statusCode > 299) {
+                  const parsedData = JSON.parse(data)
+
+                  return reject({
+                     error: parsedData.error,
+                     statusCode: response.statusCode,
+                     headers: response.headers,
+                     cost: response.headers['spb-cost'] ? parseInt(response.headers['spb-cost']) : 0
+                  })
+               }
+               
+               resolve({
+                  data: data,
+                  headers: response.headers,
+                  cost: parseInt(response.headers['spb-cost']),
+                  statusCode: parseInt(response.headers['spb-initial-status-code']),
+                  resolvedURL: response.headers['spb-resolved-url']
+               })
+            })
+         }).on('error', function(error: any, statusCode: number, responseHeaders: any, body: any) {
+            reject({
+               error: 'Something went wrong',
+               statusCode: statusCode,
+               headers: responseHeaders,
+               cost: responseHeaders['spb-cost'] ? parseInt(responseHeaders['spb-cost']) : 0
+            })
+         })
+      })
+   }
    /**
     * Executes the current request and returns it's data, status code
     * and cost information.
     */
    get() {
-      const headers: Array<Header> = Config.getHeaders(this.configuration)
-      const params: any = Config.getParams(this.configuration, this.url)
-
-      return axios.get('https://app.scrapingbee.com/api/v1/', {
-         headers,
-         params
-      }).then(response => {
-         return {
-            data: response.data,
-            headers: response.headers,
-            cost: parseInt(response.headers['spb-cost']),
-            statusCode: parseInt(response.headers['spb-initial-status-code']),
-            resolvedURL: response.headers['spb-resolved-url']
-         }
-      }).catch(e => {
-         const response = e.response
-
-         return Promise.reject({
-            error: response.data.message,
-            statusCode: response.status,
-            headers: response.headers,
-            cost: parseInt(response.headers['spb-cost'])
-         })
-      })
+      return this._performRequest('get')
    }
 
    /**
