@@ -27,7 +27,7 @@ class Request {
    /**
     * Builds and performs a request to the scrapingbee server
     * 
-    * @param type {String('get', 'post')} The type of the request
+    * @param type {String('GET', 'POST')} The type of the request
     * @param data  {Object} The data to be passed to the request body. Only applicable in POST requests
     */
    _performRequest(type: string, data: Object = {}) {
@@ -46,7 +46,7 @@ class Request {
       if (type === 'POST') {
          headers["Content-Type"] = "application/x-www-form-urlencoded; charset=utf-8"
       }
-
+      
       const options:https.RequestOptions = {
          host: 'app.scrapingbee.com',
          port: '443',
@@ -56,7 +56,6 @@ class Request {
       }
 
       return new Promise((resolve, reject) => {
-         //@ts-ignore
          const request = https.request(options, function(response: any){
             let data = ''
 
@@ -99,8 +98,10 @@ class Request {
                const value = data[key]
                request.write(key + '=' + value)
             }
+            
             request.end();
          }
+
       })
    }
 
