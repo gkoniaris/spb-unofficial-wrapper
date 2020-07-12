@@ -173,6 +173,18 @@ class Builder {
 
         return this
     }
+
+    /**
+     * Sets if the original code of the page (before javascript runs)
+     * should be returned
+     *
+     * @param originalCodeFlag {Boolean}
+     */
+    setReturnOriginalCode(this: any, originalCodeFlag: boolean) {
+        this.configuration.javascript.responseWithoutRunningJs = originalCodeFlag
+
+        return this
+    }
 }
 
 export default Builder
