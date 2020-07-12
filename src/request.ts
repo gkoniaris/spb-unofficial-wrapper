@@ -24,6 +24,12 @@ class Request {
       this.configuration = Object.assign({}, configuration)
    }
 
+   /**
+    * Builds and performs a request to the scrapingbee server
+    * 
+    * @param type {String('get', 'post')} The type of the request
+    * @param data  {Object} The data to be passed to the request body. Only applicable in POST requests
+    */
    _performRequest(type: string, data: Object = {}) {
       const headers: any = Config.getHeaders(this.configuration)
       const params: any = Config.getParams(this.configuration, this.url)
@@ -110,8 +116,8 @@ class Request {
     * Executes the current request using POST method and returns it's data, 
     * status code and cost information.
     */
-   post() {
-      return this._performRequest('POST')
+   post(data: Object) {
+      return this._performRequest('POST', data)
    }
 
    /**
