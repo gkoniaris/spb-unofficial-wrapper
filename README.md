@@ -113,6 +113,7 @@ Becomes:
 ```
 
 ## Request Builder
+
 You can also use the request builder to set each property of the request. See the following example showing how it works:
 
 ```javascript
@@ -138,6 +139,24 @@ scraper.request('https://website.com')
 If you have already passed a default configuration to the scaper, the values will be overrided for the specific request when using the functions of the builder.
 
 You can find detailed documentation about the builder functions and how to use them [here](https://gkoniaris.github.io/spb-unofficial-wrapper/Builder.html), under the Methods section of the Builder class.
+
+## Perform POST requests
+
+You can easily perform post request using the following code.
+
+```javascript
+const Scraper = require('spb-unofficial-wrapper')
+
+const scraper = new Scraper('YOUR_API_KEY')
+
+scraper.request('https://website.com')
+.post({
+    'email': 'myemail@test.com',
+    'password': 'mysecretpassword'
+})
+```
+
+Data will be send using content-type: application/x-www-form-urlencoded and it will be url encoded. All other methods of the request builder are also available in POST requests.
 
 ## Request responses
 
