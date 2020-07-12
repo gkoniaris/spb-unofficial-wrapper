@@ -24,7 +24,7 @@ class Request {
       this.configuration = Object.assign({}, configuration)
    }
 
-   _performRequest(type: string) {
+   _performRequest(type: string, data: Object = {}) {
       const headers: any = Config.getHeaders(this.configuration)
       const params: any = Config.getParams(this.configuration, this.url)
 
@@ -37,17 +37,21 @@ class Request {
          }
       })
 
+      if (type === 'POST') {
+         headers["Content-Type"] = "application/x-www-form-urlencoded; charset=utf-8"
+      }
+
       const options:https.RequestOptions = {
          host: 'app.scrapingbee.com',
          port: '443',
          path: '/api/v1?' + queryString,
-         method: 'GET',
+         method: type,
          headers
       }
 
       return new Promise((resolve, reject) => {
          //@ts-ignore
-         https[type](options, function(response: any){
+         const request = https.request(options, function(response: any){
             let data = ''
 
             response.on('data', (chunk: any) => {
@@ -82,14 +86,32 @@ class Request {
                cost: responseHeaders['spb-cost'] ? parseInt(responseHeaders['spb-cost']) : 0
             })
          })
+         
+         if (type === 'POST') {
+            for (const key in data) {
+               //@ts-ignore
+               const value = data[key]
+               request.write(key + '=' + value)
+            }
+            request.end();
+         }
       })
    }
+
    /**
-    * Executes the current request and returns it's data, status code
-    * and cost information.
+    * Executes the current request using GET method and returns it's data, 
+    * status code and cost information.
     */
    get() {
-      return this._performRequest('get')
+      return this._performRequest('GET')
+   }
+
+   /**
+    * Executes the current request using POST method and returns it's data, 
+    * status code and cost information.
+    */
+   post() {
+      return this._performRequest('POST')
    }
 
    /**
