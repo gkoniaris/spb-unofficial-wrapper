@@ -119,14 +119,14 @@ class Config {
         const params: any = {
             url,
             api_key: configuration.apiKey,
-            block_ads: configuration.block.ads,
-            block_resources: configuration.block.resources,
-            render_js: configuration.javascript.render,
+            block_ads: configuration.block.ads.toString(),
+            block_resources: configuration.block.resources.toString(),
+            render_js: configuration.javascript.render.toString(),
             country_code: configuration.settings.countryCode,
             forward_headers: configuration.request.headers.length > 0,
             js_snippet: configuration.javascript.snippet,
-            premium_proxy: configuration.settings.premiumProxy,
-            return_page_source: !configuration.javascript.responseWithoutRunningJs,
+            premium_proxy: configuration.settings.premiumProxy.toString(),
+            return_page_source: !configuration.javascript.responseWithoutRunningJs.toString(),
             wait: configuration.javascript.waitForLoad,
             wait_for: configuration.css.waitForSelector
         }
