@@ -2,6 +2,7 @@ import Header from "./@types/Header"
 import Cookie from "./@types/Cookie"
 import Configuration from "./@types/Configuration"
 import constants from "./constants";
+
 /**
  * @class Builder
  * 
